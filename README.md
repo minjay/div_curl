@@ -16,7 +16,8 @@ The codes are written in Matlab R2014a with Financial Toolbox installed. They al
 2. Install BFSPHERE Matlab package.
 
 ## Reproducing all numerical results in the paper
+All scripts are in the folder /MixedMatern/tests.
 1. To generate Figure 1: run `sim1.m` in the Matlab Command Window.
 2. To generate Figure 2: first run `sim3_server.m` and `sim3_server2.m` on a server to obtain the MLEs of 500 realizations. The former uses a regular grid with (n_lat, n_lon)=(10, 20), while the latter uses a regular grid with (n_lat, n_lon)=(15, 30). Note that it takes a long time to finish running. After that, run `plot_sim.m` to generate Figure 2.
-
+3. 
 
