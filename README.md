@@ -2,7 +2,7 @@
 The codes accompanying the paper "Cross-covariance functions for divergence-free and curl-free tangent vector fields on the sphere"
 
 ## Dependencies
-The codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
+Except the analyses by the multivariate Matern model (based on the R Package RandomFields), all the codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
 
 * RBFSPHERE Matlab package http://math.boisestate.edu/~wright/montestigliano/index.html
 * MEALPix 3.0 (The original link is broken)
@@ -16,7 +16,7 @@ The codes are written in Matlab R2014a with Financial Toolbox installed. They al
 2. Install BFSPHERE Matlab package.
 
 ## Reproducing all numerical results in the paper
-All scripts are in the folder `/MixedMatern/tests`, and all intermediate and final results are saved in the folder `/results`. Note that some codes take a **long** time to run even they are run parallelly on a server.
+All main scripts are in the folders `/MixedMatern/tests` (Matlab) and `/R_code` (R), and all intermediate and final results are saved in the folder `/results`. Note that some codes take a **long** time to run even they are run parallelly on a server.
 
 ### Simulation part
 1. To generate Figure 1: run `sim1.m` in the Matlab Command Window.
@@ -27,6 +27,6 @@ All scripts are in the folder `/MixedMatern/tests`, and all intermediate and fin
 1. The real data are downloaded through FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`. They represent u (zonal) and v (meridional) wind fields.
 2. `real_init.m` preprocesses the real data, transforms the raw data to u and v residual fields, and generates Figure 3.
 3. `real_sim.m` checks the multivariate normality of the u and v residual fields, and generates Figure 4.
-4. `real_fit.m` fits the residual fields to the Mixed Matern model, and the results are summarized in the second column of Table 2, where the standard errors are computed by `real_bootstrap.m`. It takes 
+4. `real_fit.m` fits the residual fields to the Mixed Matern model, and the results are summarized in the second column of Table 2, where the standard errors are computed by `real_bootstrap.m`. Whether the physical characteristics are captured by the Mixed Matern model is checked by `real_sim.m`. Figure 5 shows the empirical and fitted cross-covariance functions.
 5. 
 
