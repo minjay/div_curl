@@ -16,7 +16,7 @@ The codes are written in Matlab R2014a with Financial Toolbox installed. They al
 2. Install BFSPHERE Matlab package.
 
 ## Reproducing all numerical results in the paper
-All scripts are in the folder `/MixedMatern/tests`, and all intermediate and final results are saved in the folder `/results`. Note that some codes take a long time to run even they are run parallelly on a server.
+All scripts are in the folder `/MixedMatern/tests`, and all intermediate and final results are saved in the folder `/results`. Note that some codes take a **long** time to run even they are run parallelly on a server.
 
 ### Simulation part
 1. To generate Figure 1: run `sim1.m` in the Matlab Command Window.
