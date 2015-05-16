@@ -12,7 +12,10 @@ The codes are written in Matlab R2014a with Financial Toolbox installed. They al
 *To ensure compatibility, the latter three packages are already included in this repository.*
 
 ## Usage
-Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`
+1. Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`
+2. Install BFSPHERE Matlab package
+
+## Reproducing all numerical results in the paper
 
 
 
