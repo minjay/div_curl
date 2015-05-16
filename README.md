@@ -12,10 +12,11 @@ The codes are written in Matlab R2014a with Financial Toolbox installed. They al
 *To ensure compatibility, the latter three packages are already included in this repository.*
 
 ## Usage
-1. Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`
-2. Install BFSPHERE Matlab package
+1. Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`.
+2. Install BFSPHERE Matlab package.
 
 ## Reproducing all numerical results in the paper
-
+1. To generate Figure 1: run `sim1.m` in the Matlab Command Window.
+2. To generate Figure 2: first run `sim2_server.m` on a server to obtain the MLEs of 500 realizations.
 
 
