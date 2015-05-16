@@ -26,6 +26,7 @@ All scripts are in the folder `/MixedMatern/tests`, and all intermediate and fin
 ### Real data part
 1. The real data are downloaded through FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`. They represent u (zonal) and v (meridional) wind fields.
 2. `real_init.m` preprocesses the real data, transforms the raw data to u and v residual fields, and generates Figure 3.
-3. `real_sim.m` checks the multivariate normality of the u and v residual fields.
-4. 
+3. `real_sim.m` checks the multivariate normality of the u and v residual fields, and generates Figure 4.
+4. `real_fit.m` fits the residual fields to the Mixed Matern model, and the results are summarized in the second column of Table 2, where the standard errors are computed by `real_bootstrap.m`.
+5. 
 
