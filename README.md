@@ -1,7 +1,7 @@
 # div_curl
 The codes accompanying the paper "Cross-covariance functions for divergence-free and curl-free tangent vector fields on the sphere"
 
-The aim of this repository is to allow the reproduction of all the numerical results reported in this paper.
+The aim of this repository is to allow the reproduction of all numerical results reported in this paper.
 
 ## Dependencies
 Except the analyses by the multivariate Matern model (based on the R Package RandomFields), all the codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
@@ -17,7 +17,7 @@ Except the analyses by the multivariate Matern model (based on the R Package Ran
 1. Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`.
 2. Install BFSPHERE Matlab package by following the instructions on http://math.boisestate.edu/~wright/montestigliano/index.html.
 
-## Reproducing all the numerical results in the paper
+## Reproducing all numerical results in the paper
 All main scripts are in the folders `/MixedMatern/tests` (Matlab) and `/R_code` (R), and all intermediate and final results are saved in the folder `/results`. Note that some codes take a **long** time to run even they are run parallelly on a server.
 
 ### Simulation part
