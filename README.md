@@ -24,5 +24,5 @@ All scripts are in the folder /MixedMatern/tests, and all intermediate and final
 3. To generate Table 1: first run `sim4_bootstrap.m` to obtain the MLEs of 200 bootstrap samples. Then run `compute_sim_ratio.m` to compute the ratios between bootstrap standard errors and empirical standard errors.
 
 ### Real data part
-1. The real data are downloaded through FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`.
+1. The real data are downloaded through FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`, which correspond to the eastward and the northward ocean surface winds.
 
