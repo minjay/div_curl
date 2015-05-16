@@ -24,7 +24,7 @@ All main scripts are in the folders `/MixedMatern/tests` (Matlab) and `/R_code` 
 3. To generate Table 1: first run `sim4_bootstrap.m` to obtain the MLEs of 200 bootstrap samples. Then run `compute_sim_ratio.m` to compute the ratios between bootstrap standard errors and empirical standard errors.
 
 ### Real data part
-1. The real data are downloaded from the FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`. They represent u (zonal) and v (meridional) wind fields.
+1. The real data are downloaded from the FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`. They represent u (zonal) and v (meridional) wind fields, respectively.
 2. `real_init.m` preprocesses the real data, transforms the raw data to u and v residual fields, and generates Figure 3.
 3. `real_sim.m` checks the multivariate normality of the u and v residual fields, and generates Figure 4.
 4. `real_fit.m` fits the residual fields to the Mixed Matern model, and the results are summarized in the second column of Table 2, where the standard errors are computed by `real_bootstrap.m`. Whether the physical characteristics are captured by the Mixed Matern model is checked by `real_sim.m`. Figure 5 shows the empirical and fitted cross-covariance functions.
