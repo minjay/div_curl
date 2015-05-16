@@ -1,6 +1,8 @@
 # div_curl
 The codes accompanying the paper "Cross-covariance functions for divergence-free and curl-free tangent vector fields on the sphere"
 
+The aim of this repository is to allow the reproduction of all numerical results reported in this paper.
+
 ## Dependencies
 Except the analyses by the multivariate Matern model (based on the R Package RandomFields), all the codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
 
@@ -9,7 +11,7 @@ Except the analyses by the multivariate Matern model (based on the R Package Ran
 * subtightplot http://www.mathworks.com/matlabcentral/fileexchange/39664-subtightplot
 * Binned Scatter Plot http://www.mathworks.com/matlabcentral/fileexchange/19506-binned-scatter-plot
 
-*To ensure compatibility, the latter three packages are already included in this repository.*
+*To ensure compatibility, the latter three packages are already included in the repository.*
 
 ## Usage
 1. Download the codes by cloning the repository `git clone https://github.com/minjay/div_curl`.
