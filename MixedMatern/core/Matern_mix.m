@@ -1,5 +1,6 @@
 function mat = Matern_mix(P_mat_s, Q_mat_s, P_mat_t, Q_mat_t, A_mat_s, A_mat_t, h_mat, r, beta, coef, bessel)
-%MATERN_MIX   Evaluates the Mixed Matern cross-covariance function.
+%MATERN_MIX   Evaluates the Mixed Matern cross-covariance function at 
+%(s, t).
 %
 %   MAT = MATERN_MIX(P_MAT_S, Q_MAT_S, P_MAT_T, Q_MAT_T, A_MAT_S, A_MAT_T,
 %   H_MAT, R, BETA, COEF, BESSEL);
