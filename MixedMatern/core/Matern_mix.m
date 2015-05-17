@@ -7,7 +7,7 @@ function mat = Matern_mix(P_mat_s, Q_mat_s, P_mat_t, Q_mat_t, A_mat_s, A_mat_t, 
 %
 % Inputs:
 %   P_MAT_S, Q_MAT_S, P_MAT_T, Q_MAT_T, A_MAT_S, A_MAT_T - the values of
-%   matrices P, Q, A at s and t
+%   the matrices P, Q, A at s and t
 %   H_MAT - the matrix of (s-t)*(s-t)'
 %   R - the Euclidean distance between s and t
 %   BETA - the current parameter vector (excluding tau_1 and tau_2)
