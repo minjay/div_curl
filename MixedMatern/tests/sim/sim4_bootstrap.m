@@ -43,7 +43,6 @@ ub = [Inf Inf 1 5 5 Inf Inf Inf];
 
 rec_beta_hat = zeros(B, 8);
 
-% fit the model
 parfor rep = 1:B
     
     samples = samples_all(rep, :);
