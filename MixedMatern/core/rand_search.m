@@ -4,7 +4,7 @@ function beta_init = rand_search(negloglik1, n_cand, lb, ub, lhs, paral)
 %   BETA_INIT = RAND_SEARCH(NEGLOGLIK1, N_CAND, LB, UB, LHS, PARAL);
 %
 % Inputs:
-%   NEGLOGLIK1 - the handle of the function used to evaluate the negative
+%   NEGLOGLIK1 - the handle of the function evaluating the negative
 %   log-likelihood
 %   N_CAND - the number of candidates
 %   LB, UB - the lower and upper bounds of the parameter vector
