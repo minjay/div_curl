@@ -1,5 +1,5 @@
 function [theta, phi, n] = regular_sampling(n_lat, n_lon)
-%REGULAR_SAMPLING   Samples the observations on a regular grid of the
+%REGULAR_SAMPLING   Samples observations on a regular grid of the
 %   sphere. The latitudes range from -50 degree to 50 degree.
 %
 %   [THETA, PHI, N] = REGULAR_SAMPLING(N_LON, N_LAT);
