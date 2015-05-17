@@ -1,5 +1,6 @@
 function mat = Matern_pars(r, sigma1, sigma2, rho12, nu1, nu2, a)
-%MATERN_PARS   Evaluates the parsimonious bivariate Matern model.
+%MATERN_PARS   Evaluates the parsimonious bivariate Matern cross-
+%covariance function.
 %
 %   MAT = MATERN_PARS(R, SIGMA1, SIGMA2, RHO12, NU1, NU2, A);
 %
