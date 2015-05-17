@@ -9,7 +9,7 @@ function cov_mat = get_cov_Matern_pars(r, sigma1, sigma2, rho12, nu1, nu2, a)
 %   Euclidean distances between all the pairs of sampling locations
 %   SIGMA1, SIGMA2 - the standard deviation parameters
 %   RHO12 - the co-located correlation
-%   NU1, NU2 - the smoothness parameter
+%   NU1, NU2 - the smoothness parameters
 %   A - the spatial scale parameter
 %
 % Outputs:
