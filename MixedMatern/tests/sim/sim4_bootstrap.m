@@ -51,6 +51,7 @@ parfor rep = 1:B
     % negative log-likelihood function
     negloglik1 = @(beta_all) negloglik_fast(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples, n_lat, n_lon);
     
+    % fit the model
     [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
     rec_beta_hat(rep, :) = beta_hat;
     
