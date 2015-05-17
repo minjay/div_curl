@@ -1,0 +1,401 @@
+
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> rm(list=ls())
+> 
+> library(RandomFields)
+Loading required package: sp
+
+Attaching package: ‘RandomFields’
+
+The following objects are masked from ‘package:base’:
+
+    abs, acosh, asin, asinh, atan, atan2, atanh, cos, cosh, exp, expm1,
+    floor, gamma, lgamma, log, log1p, log2, logb, max, min, round, sin,
+    sinh, sqrt, tan, tanh, trunc
+
+> library(R.matlab)
+R.matlab v3.2.0 (2015-02-24) successfully loaded. See ?R.matlab for help.
+
+Attaching package: ‘R.matlab’
+
+The following objects are masked from ‘package:base’:
+
+    getOption, isOpen
+
+> 
+> ## two warnings
+> ## seem to be bugs
+> 
+> RFoptions(modus_operandi="sloppy")
+Note that the option 'modus_operandi' is still in an experimental stage, so that the behaviour may change (slightly) in future.> 
+> ## read data
+> ## change the directory if necessary
+> platform <- Sys.info()['sysname']
+> if (platform=='Darwin'){
++   dat <- readMat('/Users/minjay/Documents/MATLAB/Needlets/Vector/div_curl/MixedMatern/tests/real/wind.mat')
++ }else if (platform=='Linux'){
++   dat <- readMat('/home/minjay/div_curl/MixedMatern/tests/real/wind.mat')
++ }
+> 
+> ## re-arrange the data
+> samples <- dat$samples
+> n.rep <- dim(samples)[1]
+> n.obs <- dim(samples)[2]/2
+> U <- t(samples[, seq(1, n.obs*2, 2)])
+> V <- t(samples[, seq(2, n.obs*2, 2)])
+> UV <- matrix(0, n.obs, n.rep*2)
+> UV[, seq(1, n.rep*2, 2)] <- U
+> UV[, seq(2, n.rep*2, 2)] <- V
+> 
+> ## get distance matrix
+> ## chordal distance
+> loc <- cbind(dat$x, dat$y, dat$z)
+> Dist.mat <- as.vector(dist(loc))
+> 
+> #################################
+> ## model definition            ##
+> #################################
+> ## bivariate pure nugget effect:
+> nug <- RMmatrix(M = matrix(nc = 2, c(NA, 0, 0, NA)), RMnugget())
+> ## parsimonious bivariate Matern model
+> pars.model <- nug + RMbiwm(nudiag = c(NA, NA), scale = NA, cdiag = c(NA, NA),
++                            rhored = NA)
+> ## whole bivariate Matern model
+> whole.model <- nug + RMbiwm(nudiag = c(NA, NA), nured = NA, s = rep(NA, 3),
++                             cdiag = c(NA, NA), rhored = NA)
+> 
+> #################################
+> ## model fitting and testing   ##
+> #################################
+> ## parsimonious model
+> pars <- RFfit(pars.model, distances = Dist.mat, dim = 3, data = UV,
++               optim.control = list(trace = TRUE))
+The standard deviations of the components are rather different. It might be
+ better to standardise the components of the data before calling RFfit.
+
+Due to the covariance model a 2-variate random field is expected. Therefore, 
+the data matrix is assumed to consist of 108 independent measurements for
+each point. Each realisation is given as the entries of 2 consecutive 
+columns.
+iter   10 value 0.049189
+iter   20 value 0.048981
+iter   30 value 0.045416
+iter   40 value 0.042849
+iter   50 value 0.042826
+iter   60 value 0.029637
+iter   70 value 0.023514
+final  value 0.023514 
+converged
+iter   10 value 0.052551
+iter   20 value 0.048301
+iter   30 value 0.047769
+iter   40 value 0.034370
+iter   50 value 0.034314
+iter   60 value 0.006255
+final  value 0.002412 
+converged
+iter   10 value 0.004602
+iter   20 value 0.001168
+iter   30 value 0.000383
+iter   40 value 0.000310
+iter   50 value 0.000300
+final  value 0.000300 
+converged
+iter   10 value 0.000723
+iter   20 value 0.000520
+iter   30 value 0.000328
+iter   40 value 0.000138
+iter   50 value 0.000102
+iter   60 value 0.000093
+iter   70 value 0.000087
+final  value 0.000087 
+converged
+iter   10 value 0.004037
+iter   20 value 0.001290
+iter   30 value 0.000311
+iter   40 value 0.000281
+final  value 0.000281 
+converged
+iter   10 value 0.001045
+iter   20 value 0.000809
+iter   30 value 0.000456
+iter   40 value 0.000169
+final  value 0.000144 
+converged
+iter   10 value 0.002623
+iter   20 value 0.002099
+iter   30 value 0.001016
+iter   40 value 0.000134
+iter   50 value 0.000089
+final  value 0.000089 
+converged
+iter   10 value 0.004190
+iter   20 value 0.001433
+iter   30 value 0.000469
+iter   40 value 0.000383
+iter   50 value 0.000372
+iter   60 value 0.000173
+final  value 0.000173 
+converged
+iter   10 value 0.986084
+iter   20 value 0.984106
+iter   30 value 0.976228
+iter   40 value 0.975624
+final  value 0.975624 
+converged
+
+Note: There are some indications that the model might be overparametrised
+or that the bounds for the variables are too wide. Try narrower lower and
+upper bounds for the variables in the latter case. One of the critical
+parameters is 'lowerbound_var_factor' whose value (10000) xmight be reduced.
+iter   10 value 0.045100
+iter   20 value 0.035995
+iter   30 value 0.024138
+iter   40 value 0.023879
+iter   50 value 0.022400
+iter   60 value 0.012145
+iter   70 value 0.011296
+final  value 0.011296 
+converged
+iter   10 value 0.050704
+iter   20 value 0.046686
+iter   30 value 0.034855
+iter   40 value 0.030645
+final  value 0.000538 
+converged
+iter   10 value 0.000913
+iter   20 value 0.000012
+iter   30 value 0.000010
+final  value 0.000009 
+converged
+iter   10 value 0.000147
+iter   20 value 0.000012
+iter   30 value 0.000010
+iter   40 value 0.000010
+final  value 0.000010 
+converged
+iter   10 value 0.000811
+iter   20 value 0.000018
+iter   30 value 0.000008
+iter   40 value 0.000006
+final  value 0.000006 
+converged
+iter   10 value 0.000302
+iter   20 value 0.000029
+iter   30 value 0.000011
+iter   40 value 0.000008
+final  value 0.000008 
+converged
+iter   10 value 0.001205
+iter   20 value 0.000163
+iter   30 value 0.000029
+iter   40 value 0.000014
+iter   50 value 0.000006
+iter   60 value 0.000005
+final  value 0.000005 
+converged
+iter   10 value 0.000822
+iter   20 value 0.000229
+iter   30 value 0.000013
+iter   40 value 0.000008
+iter   50 value 0.000007
+final  value 0.000007 
+converged
+iter   10 value 0.947626
+iter   20 value 0.947341
+final  value 0.947341 
+converged
+iter   10 value 0.763523
+final  value 0.756176 
+converged
+iter   10 value 0.746500
+iter   20 value 0.741990
+iter   30 value 0.732774
+iter   40 value 0.732750
+iter   50 value 0.732507
+iter   60 value 0.732484
+iter   70 value 0.732477
+iter   80 value 0.732458
+final  value 0.732442 
+converged
+iter   10 value 0.554993
+iter   20 value 0.545176
+iter   30 value 0.544843
+iter   40 value 0.544658
+iter   50 value 0.543534
+iter   60 value 0.543222
+iter   70 value 0.543097
+iter   80 value 0.542190
+iter   90 value 0.542187
+iter  100 value 0.541833
+final  value 0.541734 
+stopped after 101 iterations
+iter   10 value 0.521069
+iter   20 value 0.517954
+iter   30 value 0.517950
+iter   40 value 0.517945
+iter   50 value 0.517914
+iter   60 value 0.517892
+iter   70 value 0.517854
+final  value 0.517854 
+converged
+iter   10 value 0.608432
+iter   20 value 0.594658
+iter   30 value 0.594522
+iter   40 value 0.594462
+iter   50 value 0.594423
+final  value 0.594423 
+converged
+iter   10 value 0.527549
+iter   20 value 0.526967
+iter   30 value 0.526588
+iter   40 value 0.526115
+iter   50 value 0.522517
+iter   60 value 0.522036
+iter   70 value 0.522022
+iter   80 value 0.522009
+final  value 0.522007 
+converged
+iter   10 value 0.578236
+iter   20 value 0.573766
+iter   30 value 0.572636
+iter   40 value 0.572368
+iter   50 value 0.572358
+final  value 0.572358 
+converged
+iter   10 value 0.562656
+iter   20 value 0.561452
+iter   30 value 0.558537
+iter   40 value 0.558296
+iter   50 value 0.556151
+iter   60 value 0.555581
+final  value 0.555581 
+converged
+iter   10 value 0.986237
+iter   20 value 0.985552
+iter   30 value 0.985358
+iter   40 value 0.985351
+iter   50 value 0.985324
+iter   60 value 0.985293
+iter   70 value 0.985289
+final  value 0.985289 
+converged
+final  value 1.000000 
+converged
+final  value 1.000000 
+converged
+final  value 0.838701 
+converged
+final  value 0.834380 
+converged
+final  value 0.846837 
+converged
+final  value 0.830742 
+converged
+final  value 0.838541 
+converged
+final  value 0.836995 
+converged
+final  value 0.998418 
+converged
+final  value 1.000000 
+converged
+final  value 1.000000 
+converged
+iter   10 value 0.497528
+iter   20 value 0.494938
+iter   30 value 0.494399
+iter   40 value 0.494116
+iter   50 value 0.494030
+iter   60 value 0.493960
+iter   70 value 0.493950
+iter   80 value 0.493945
+iter   90 value 0.493905
+iter  100 value 0.493718
+final  value 0.493636 
+stopped after 101 iterations
+iter   10 value 0.480892
+final  value 0.480892 
+converged
+iter   10 value 0.551683
+iter   20 value 0.549322
+iter   30 value 0.547334
+final  value 0.547284 
+converged
+iter   10 value 0.479142
+iter   20 value 0.476055
+iter   30 value 0.472034
+iter   40 value 0.468559
+iter   50 value 0.419968
+iter   60 value 0.417017
+iter   70 value 0.415918
+iter   80 value 0.383910
+iter   90 value 0.373542
+iter  100 value 0.360884
+final  value 0.357877 
+stopped after 101 iterations
+iter   10 value 0.457570
+iter   20 value 0.439724
+iter   30 value 0.378767
+iter   40 value 0.366344
+iter   50 value 0.365948
+iter   60 value 0.365884
+iter   70 value 0.351078
+iter   80 value 0.350487
+iter   90 value 0.350472
+iter  100 value 0.347720
+final  value 0.347688 
+stopped after 101 iterations
+iter   10 value 0.409708
+iter   20 value 0.370335
+iter   30 value 0.349489
+iter   40 value 0.341206
+iter   50 value 0.337632
+iter   60 value 0.337572
+final  value 0.337564 
+converged
+iter   10 value 0.999994
+iter   20 value 0.999985
+iter   30 value 0.999982
+iter   40 value 0.999981
+iter   50 value 0.999980
+iter   60 value 0.999980
+final  value 0.999980 
+converged
+
+Note: There are very strong indications that the model might be overparametrised
+or that the bounds for the variables are too wide. Try narrower lower and
+upper bounds for the variables in the latter case. One of the critical
+parameters is 'lowerbound_var_factor' whose value (10000) xmight be reduced.
+> 
+> summary(pars)
+
+User's variables:
+      matrix.M.1  matrix.M.2      biwm.s biwm.nudiag.1 biwm.nudiag.2
+value 0.21810846 0.203180249 0.058196367    1.23929461     1.1322247
+sd    0.00130157 0.001496681 0.001235948    0.03327131     0.0320536
+      biwm.cdiag.1 biwm.cdiag.2 biwm.rhored
+value  0.184217146  0.156812964 -0.07977680
+sd     0.002847348  0.002244052  0.00657685
+
+      #variab loglikelihood           AIC 
+         8.00     -46994.87      94005.74 
+
+> 
