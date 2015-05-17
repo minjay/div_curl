@@ -47,7 +47,7 @@ lon_m_v = lon_m(:);
 % find the indices of NaN
 idx_NaN = isnan(m_uwnd_v)+isnan(m_vwnd_v);
 
-% extract elements which are valid numbers
+% extract the elements which are valid numbers
 m_uwnd_v = m_uwnd_v(~idx_NaN);
 m_vwnd_v = m_vwnd_v(~idx_NaN);
 lat_m_v = lat_m_v(~idx_NaN);
