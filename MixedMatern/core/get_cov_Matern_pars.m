@@ -2,7 +2,7 @@ function cov_mat = get_cov_Matern_pars(r, sigma1, sigma2, rho12, nu1, nu2, a)
 %GET_COV_MATERN_PARS   Gets the cross-covariance matrix of the parsimonious
 %bivariate Matern model
 %
-%   COV_MAT = GET_COV_Matern_PARS(R, SIGMA1, SIGMA2, RHO12, NU1, NU2, A);
+%   COV_MAT = GET_COV_MATERN_PARS(R, SIGMA1, SIGMA2, RHO12, NU1, NU2, A);
 %
 % Inputs:
 %   R - one of the outputs of INIT_COMP, which records the Euclidean
