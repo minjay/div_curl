@@ -23,7 +23,7 @@ All main scripts are in the folders `/MixedMatern/tests` (Matlab) and `/R_code` 
 ### Simulation part
 1. To generate Figure 1: run `sim1.m` in the Matlab Command Window.
 2. To generate Figure 2: first run `sim3_server.m` and `sim3_server2.m` on a server to obtain the MLEs of 500 realizations. The former uses a regular grid with (n_lat, n_lon)=(10, 20), while the latter uses a regular grid with (n_lat, n_lon)=(15, 30). After that, run `plot_sim.m` to generate Figure 2.
-3. To generate Table 1: first, run the command `matlab -r "sim4_bootstrap(num)"` on a server to obtain the MLEs of 200 bootstrap samples, where `num` is 1 to 10 since this procedure is done for 10 realizations. Then run `compute_sim_ratio.m` to compute the ratios between bootstrap standard errors and empirical standard errors and the median of these ratios for 10 realizations.
+3. To generate Table 1: first, run the command `matlab -r "sim4_bootstrap(num)"` on a server to obtain the MLEs of 200 bootstrap samples, where `num` is 1 to 10 since this procedure is done for 10 realizations. Then run `compute_sim_ratio.m` to compute the ratios between bootstrap standard errors and empirical standard errors and the medians of these ratios for 10 realizations.
 
 ### Real data part
 1. The real data are downloaded from the FTP: ftp://podaac-ftp.jpl.nasa.gov/allData/quikscat/L3/wind_1deg_1mo. The filenames are `uas_QuikSCAT_L2B_v20110531_199908-200910.nc` and `vas_QuikSCAT_L2B_v20110531_199908-200910.nc`. They represent u (zonal) and v (meridional) wind fields, respectively.
