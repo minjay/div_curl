@@ -64,7 +64,7 @@ end
 X = [uwnd_resid_val_v' vwnd_resid_val_v'];
 [U, S, V] = svd(X, 'econ');
 
-% find the threshold
+% find the 95% threshold
 lambda = diag(S).^2;
 var_exp = cumsum(lambda)./sum(lambda);
 thres = find(var_exp>=0.95, 1, 'first'); 
