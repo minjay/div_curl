@@ -54,7 +54,7 @@ a = beta(6);
 tau1 = beta_all(7);
 tau2 = beta_all(8);
 
-% compute the signal-to-noise ratio
+% compute the signal-to-noise ratios
 signal = sigma1^2*a^2/2/(nu1-1)+sigma2^2*a^2/2/(nu2-1);
 prop1 = signal/tau1^2;
 prop2 = signal/tau2^2;
