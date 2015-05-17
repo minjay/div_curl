@@ -1,6 +1,6 @@
 % a script to test:
 % (1) whether negloglik_fast is correct
-% (2) how fast negloglik_fast is
+% (2) how fast negloglik_fast runs
 
 clear
 
