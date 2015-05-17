@@ -1,14 +1,14 @@
 function [theta, phi, n] = HEALPix_sampling(Nside_power)
-%HEALPIX_SAMPLING   Samples the observations on the HEALPix grid.
+%HEALPIX_SAMPLING   Samples observations on the HEALPix grid.
 %
 %   [THETA, PHI, N] = HEALPIX_SAMPLING(NSIDE_POWER);
 %
 % Inputs:
-%   NSIDE_POWER - the number of grid points is NSIDE = 2^NSIDE_POWER
+%   NSIDE_POWER - determines the number of grid points
 %
 % Outputs:
-%   THETA, PHI - the locations of the grid points in the spherical
-%   coordinate
+%   THETA, PHI - the locations of grid points in the spherical
+%   coordinate system
 %   N - the number of grid points
 %
 % Author: Minjie Fan, 2015
