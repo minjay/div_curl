@@ -5,7 +5,7 @@ function [x, y, z] = trans_coord(theta, phi)
 %   [X, Y, Z] = TRANS_COORD(THETA, PHI);
 %
 % Inputs:
-%   THETA, Phi - the spherical coordinate
+%   THETA, PHI - the spherical coordinate
 %
 % Outputs:
 %   X, Y, Z - the Euclidean coordinate
