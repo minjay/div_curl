@@ -11,7 +11,7 @@ savefile = 'boot1.mat';
 
 T = 108;
 p = 2;
-% number of bootstrapping
+% number of bootstrap samples
 B = 200;
 
 % initial computation
