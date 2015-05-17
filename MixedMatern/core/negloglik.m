@@ -1,7 +1,7 @@
 function f_value = negloglik(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples)
 %NEGLOGLIK   A wrapper of ECMNOBJ to evaluate negative log-likelihood function. 
 %
-%   F_VALUE= NEGLOGLIK(BETA_ALL, H_MAT, R, P_CELL, Q_CELL, A_CELL,
+%   F_VALUE = NEGLOGLIK(BETA_ALL, H_MAT, R, P_CELL, Q_CELL, A_CELL,
 %   SAMPLES);
 %
 % Inputs:
@@ -9,7 +9,7 @@ function f_value = negloglik(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples
 %   H_MAT, R, P_CELL, Q_CELL, A_CELL - the outputs of the function
 %   INIT_COMP, which are computed beforehand to speed up the evaluation of
 %   the negative log-likelihood function
-%   SAMPLES - T-by-np matrix of observations, where T is the number of
+%   SAMPLES - T-by-n*p matrix of observations, where T is the number of
 %   replicates, n is the number of sampling locations and p=2
 %
 % Outputs:
