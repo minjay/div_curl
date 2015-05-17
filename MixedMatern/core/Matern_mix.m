@@ -15,7 +15,7 @@ function mat = Matern_mix(P_mat_s, Q_mat_s, P_mat_t, Q_mat_t, A_mat_s, A_mat_t, 
 %   evaluation of the Mixed Matern cross-covariance function
 %
 % Outputs:
-%   MAT - the Mixed Matern cross-covariance function evaluated at s and t
+%   MAT - the Mixed Matern cross-covariance function evaluated at (s, t)
 %
 % Author: Minjie Fan, 2015
 
