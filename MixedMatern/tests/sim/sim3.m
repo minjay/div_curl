@@ -19,7 +19,7 @@ n_lon = 40;
 % generate samples
 p = 2;
 % set the same seed
-rng('default')
+%rng('default')
 samples = mvnrnd(zeros(p*n, 1), eye(p*n))';
 
 % specify parameters
