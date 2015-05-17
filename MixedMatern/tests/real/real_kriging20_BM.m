@@ -1,5 +1,5 @@
 % cokriging 20 times
-% parsimonious multivariate Matern model
+% parsimonious bivariate Matern model
 clear
 
 p = 2;
