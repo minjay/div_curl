@@ -9,7 +9,7 @@ load('MLE2.mat')
 savefile = ['boot_sim', num2str(num), '.mat'];
 
 p = 2;
-% number of bootstrapping
+% number of bootstrap samples
 B = 200;
 
 n_lat = 15;
