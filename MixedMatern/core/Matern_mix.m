@@ -11,8 +11,9 @@ function mat = Matern_mix(P_mat_s, Q_mat_s, P_mat_t, Q_mat_t, A_mat_s, A_mat_t, 
 %   H_MAT - the matrix of (s-t)*(s-t)'
 %   R - the Euclidean distance between s and t
 %   BETA - the current parameter vector (excluding tau_1 and tau_2)
-%   COEF, BESSEL - two quantities computed beforehand to speed up the
-%   evaluation of the Mixed Matern cross-covariance function
+%   COEF, BESSEL - two quantities computed beforehand by the function 
+%   GET_COEF_BESSEL to speed up the evaluation of the Mixed Matern 
+%   cross-covariance function
 %
 % Outputs:
 %   MAT - the Mixed Matern cross-covariance function evaluated at (s, t)
