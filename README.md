@@ -4,7 +4,7 @@ The codes accompanying the paper "Cross-covariance functions for divergence-free
 The aim of this repository is to allow the reproduction of all numerical results reported in this paper.
 
 ## Dependencies
-Except the analyses by the multivariate Matern model (based on the R Package RandomFields), all the codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
+Except the analyses by the multivariate Matern model (based on the R package RandomFields), all the codes are written in Matlab R2014a with Financial Toolbox installed. They also depend on the following packages written by other researchers.
 
 * RBFSPHERE Matlab package http://math.boisestate.edu/~wright/montestigliano/index.html
 * MEALPix 3.0 (The original link is broken)
