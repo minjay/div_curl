@@ -5,7 +5,7 @@ function [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, mycon, pa
 %   PARAL)
 %
 % Inputs:
-%   NEGLOGLIK1 - the handle of the function used to evaluate the negative
+%   NEGLOGLIK1 - the handle of the function evaluating the negative
 %   log-likelihood
 %   BETA_INIT - the initial guess of the parameter vector
 %   LB, UB - the lower and upper bounds of the parameter vector
