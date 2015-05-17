@@ -62,7 +62,7 @@ negloglik1 = @(beta_all) negloglik(beta_all, h_mat_sub, r_sub, P_cell_sub, Q_cel
 % fit the model
 [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, true);
 
-beta_hat = [0.028968 0.053642 0.286489 1.802897 2.069642 9.747633 0.212997 0.199817];
+%beta_hat = [0.028968 0.053642 0.286489 1.802897 2.069642 9.747633 0.212997 0.199817];
 
 beta = beta_hat(1:6);
 tau1 = beta_hat(7);
