@@ -10,7 +10,7 @@ function [theta, phi, n] = regular_sampling(n_lat, n_lon)
 %
 % Outputs:
 %   THETA, PHI - the locations of the grid points in the spherical
-%   coordinate
+%   coordinate system
 %   N - the number of grid points
 %
 % Author: Minjie Fan, 2015
