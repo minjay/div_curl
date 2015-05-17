@@ -100,7 +100,7 @@ title('Covariance of V Residual Field')
 lat = (pi/2-theta)/pi*180;
 lon = phi/pi*180;
 
-% compute the correlation
+% compute the correlations
 corr_mat_data = corr(samples);
 corr_uv_data = corr_mat_data(1:p:end, 2:p:end);
 
