@@ -7,7 +7,7 @@ function f_value = negloglik_fast(beta_all, h_mat, r, P_cell, Q_cell, A_cell, sa
 %   BETA_ALL - the current parameter vector
 %   H_MAT, R, P_CELL, Q_CELL, A_CELL - the outputs of the function
 %   INIT_COMP, which are computed beforehand to speed up the evaluation of
-%   negative log-likelihood function
+%   the negative log-likelihood function
 %   SAMPLES - the row vector of stacked (u, v) observations with length
 %   p*n, where p=2
 %   n_lat - the number of latitudes
