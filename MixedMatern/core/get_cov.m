@@ -8,7 +8,7 @@ function cov_mat = get_cov(h_mat, r, P_cell, Q_cell, A_cell, Matern_func, beta, 
 %   H_MAT, R, P_CELL, Q_CELL, A_CELL - the outputs of the function
 %   INIT_COMP, which are computed beforehand to speed up the computation of
 %   the cross-covariance matrix
-%   MATERN_FUNC - the name of the function to evaluate the Mixed Matern
+%   MATERN_FUNC - the handle of the function to evaluate the Mixed Matern
 %   cross-covariance function
 %   BETA - the current parameter vector (excluding tau_1 and tau_2)
 %   COEF, BESSEL - the outputs of the function GET_COEF_BESSEL, which are
