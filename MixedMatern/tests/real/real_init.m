@@ -189,5 +189,5 @@ for i = 1:T
     samples(i, :) = reshape([rec_u_field_m_sub_v(:, i) rec_v_field_m_sub_v(:, i)]', 1, 2*n);
 end
 
-% save to .mat file
+% save as .mat file
 save('wind.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
