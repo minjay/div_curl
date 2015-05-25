@@ -22,5 +22,4 @@ q1 = chi2inv(prob,nc);
 plot(q1,d3,'+');
 hold on
 plot([min(q1), max(q1)], [min(q1), max(q1)], 'r-.')
-axis equal
-axis tight
+box off
