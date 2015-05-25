@@ -1,4 +1,4 @@
-function [d2]=qqchi2(y)
+function qqchi2(y)
 % Provide Chi-square QQ plot for multivariate data
 %
 % y: data matrix
@@ -20,4 +20,7 @@ end
 prob=(p-0.5)/nr;
 q1 = chi2inv(prob,nc);
 plot(q1,d3,'+');
-lsline;
+hold on
+plot([min(q1), max(q1)], [min(q1), max(q1)], 'r-.')
+axis equal
+axis tight
