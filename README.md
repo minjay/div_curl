@@ -1,5 +1,5 @@
 # div_curl
-The codes accompanying the paper "Cross-covariance functions for divergence-free and curl-free tangent vector fields on the sphere"
+The codes accompanying the paper "Cross-covariance functions for tangent vector fields on the sphere"
 
 The aim of this repository is to allow the reproduction of all numerical results reported in this paper.
 
