@@ -20,7 +20,7 @@ ub = [Inf Inf 1 5 5 Inf Inf Inf];
 T = 108;
 n_pred = n/2;
 p = 2;
-B = 1;
+B = 20;
 
 MSPE_u = zeros(B, 1);
 MSPE_v = zeros(B, 1);
