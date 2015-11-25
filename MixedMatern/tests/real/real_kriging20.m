@@ -18,14 +18,19 @@ lb = [0 0 -1 1 1 0 0 0];
 ub = [Inf Inf 1 5 5 Inf Inf Inf];
 
 T = 108;
-n_pred = 170;
+n_pred = n/2;
 p = 2;
-B = 20;
+B = 1;
 
 MSPE_u = zeros(B, 1);
 MSPE_v = zeros(B, 1);
 MAE_u = zeros(B, 1);
 MAE_v = zeros(B, 1);
+
+LogS_u = zeros(B, 1);
+LogS_v = zeros(B, 1);
+CRPS_u = zeros(B, 1);
+CRPS_v = zeros(B, 1);
 
 rng('default')
 
@@ -35,9 +40,20 @@ rec_est_loc = zeros(B, n_est);
 rec_idx_est = zeros(B, p*n_est);
 rec_idx_pred = zeros(B, p*n_pred);
 
+theta_m = (min(theta)+max(theta))/2;
+phi_m = (min(phi)+max(phi))/2;
+width = 10/180*pi;
+theta_l = theta_m-2*width;
+theta_r = theta_m+2*width;
+phi_l = phi_m-width;
+phi_r = phi_m+width;
+
+region = find(theta>=theta_l & theta<=theta_r & phi>=phi_l & phi<=phi_r);
+pop = setdiff(1:n, region);
+
 for i = 1:B
-    rec_pred_loc(i, :) = sort(randsample(n, n_pred));
-    rec_est_loc(i, :) = setdiff(1:n, rec_pred_loc(i, :));
+    rec_est_loc(i, :) = sort(randsample(pop, n_est));
+    rec_pred_loc(i, :) = setdiff(1:n, rec_est_loc(i, :));
 
     rec_idx_est(i, :) = sort([rec_est_loc(i, :)*p-1 rec_est_loc(i, :)*p]);
     rec_idx_pred(i, :) = setdiff(1:p*n, rec_idx_est(i, :));
@@ -51,8 +67,8 @@ parfor rep = 1:B
     pred_loc = rec_pred_loc(rep, :);
     est_loc = rec_est_loc(rep, :);
 
-    idx_est = rec_idx_est(rep, :)
-    idx_pred = rec_idx_pred(rep, :)
+    idx_est = rec_idx_est(rep, :);
+    idx_pred = rec_idx_pred(rep, :);
 
     % compute the subsets
     h_mat_sub = h_mat(est_loc, est_loc);
@@ -85,6 +101,12 @@ parfor rep = 1:B
     
     SigmaP0 = cov_mat(idx_pred, idx_est);
     pred_y = SigmaP0*tmp;
+    
+    SigmaPP = cov_mat(idx_pred, idx_pred);
+    Sigma0P = SigmaP0';
+    var_pred_y = diag(SigmaPP-SigmaP0*(Sigma00\Sigma0P));
+    var_pred_y_u = var_pred_y(1:p:end);
+    var_pred_y_v = var_pred_y(2:p:end);
 
     obs_y = samples(:, idx_pred)';
 
@@ -98,14 +120,29 @@ parfor rep = 1:B
     diff_v = obs_v-pred_v;
     diff_v = diff_v(:);
     
+    negloglik_u = zeros(T, 1);
+    negloglik_v = zeros(T, 1);
+    CRPS_t_u = zeros(T, 1);
+    CRPS_t_v = zeros(T, 1);
+    for t = 1:T
+        negloglik_u(t) = mean(-log(normpdf(obs_u(:, t), pred_u(:, t), sqrt(var_pred_y_u))));
+        negloglik_v(t) = mean(-log(normpdf(obs_v(:, t), pred_v(:, t), sqrt(var_pred_y_v))));
+        CRPS_t_u(t) = mean(CRPS(obs_u(:, t), pred_u(:, t), var_pred_y_u));
+        CRPS_t_v(t) = mean(CRPS(obs_v(:, t), pred_v(:, t), var_pred_y_v));
+    end
+    
     MSPE_u(rep) = mean(diff_u.^2);
     MSPE_v(rep) = mean(diff_v.^2);
     MAE_u(rep) = mean(abs(diff_u));  
     MAE_v(rep) = mean(abs(diff_v));
+    LogS_u(rep) = mean(negloglik_u);
+    LogS_v(rep) = mean(negloglik_v);
+    CRPS_u(rep) = mean(CRPS_t_u);
+    CRPS_v(rep) = mean(CRPS_t_v);
     
 end
 
-save(savefile, 'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v');
+save(savefile, 'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v', 'LogS_u', 'LogS_v', 'CRPS_u', 'CRPS_v');
 
 % run on server
 delete(gcp)
