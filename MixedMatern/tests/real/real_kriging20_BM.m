@@ -5,6 +5,8 @@ clear
 p = 2;
 B = 20;
 
+savefile = 'pred_err_BM.mat';
+
 load('wind.mat')
 load('pred_loc.mat')
 
@@ -14,10 +16,20 @@ load('param_kriging.mat')
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
 
+T = 108;
+
 MSPE_u = zeros(B, 1);
 MSPE_v = zeros(B, 1);
 MAE_u = zeros(B, 1);
 MAE_v = zeros(B, 1);
+negloglik_u = zeros(T, 1);
+negloglik_v = zeros(T, 1);
+LogS_u = zeros(B, 1);
+LogS_v = zeros(B, 1);
+CRPS_t_u = zeros(T, 1);
+CRPS_t_v = zeros(T, 1);
+CRPS_u = zeros(B, 1);
+CRPS_v = zeros(B, 1);
 
 beta_all = zeros(1, 8);
 
@@ -49,6 +61,12 @@ for rep = 1:B
     
     SigmaP0 = cov_mat(idx_pred, idx_est);
     pred_y = SigmaP0*tmp;
+    
+    SigmaPP = cov_mat(idx_pred, idx_pred);
+    Sigma0P = SigmaP0';
+    var_pred_y = diag(SigmaPP-SigmaP0*(Sigma00\Sigma0P));
+    var_pred_y_u = var_pred_y(1:p:end);
+    var_pred_y_v = var_pred_y(2:p:end);
 
     obs_y = samples(:, idx_pred)';
 
@@ -62,29 +80,22 @@ for rep = 1:B
     diff_v = obs_v-pred_v;
     diff_v = diff_v(:);
     
+    for t = 1:T
+        negloglik_u(t) = mean(-log(normpdf(obs_u(:, t), pred_u(:, t), sqrt(var_pred_y_u))));
+        negloglik_v(t) = mean(-log(normpdf(obs_v(:, t), pred_v(:, t), sqrt(var_pred_y_v))));
+        CRPS_t_u(t) = mean(CRPS(obs_u(:, t), pred_u(:, t), var_pred_y_u));
+        CRPS_t_v(t) = mean(CRPS(obs_v(:, t), pred_v(:, t), var_pred_y_v));
+    end
+    
     MSPE_u(rep) = mean(diff_u.^2);
     MSPE_v(rep) = mean(diff_v.^2);
     MAE_u(rep) = mean(abs(diff_u));  
     MAE_v(rep) = mean(abs(diff_v));
-    
+    LogS_u(rep) = mean(negloglik_u);
+    LogS_v(rep) = mean(negloglik_v);
+    CRPS_u(rep) = mean(CRPS_t_u);
+    CRPS_v(rep) = mean(CRPS_t_v);
+
 end
 
-% MSPE_u
-median(MSPE_u)
-max(MSPE_u)
-min(MSPE_u)
-
-% MSPE_v
-median(MSPE_v)
-max(MSPE_v)
-min(MSPE_v)
-
-% MAE_u
-median(MAE_u)
-max(MAE_u)
-min(MAE_u)
-
-% MAE_v
-median(MAE_v)
-max(MAE_v)
-min(MAE_v)
+save(savefile, 'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v', 'LogS_u', 'LogS_v', 'CRPS_u', 'CRPS_v');
