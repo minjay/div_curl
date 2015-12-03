@@ -90,7 +90,7 @@ subplot('position', [0.05 0.1 0.3 0.8])
 quiver(lon_region, lat_region, obs_u_region, obs_v_region)
 axis equal
 axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
+rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5, 'LineStyle','--')
 title('Observed Winds')
 xlabel('East longitude')
 ylabel('Latitude')
@@ -99,7 +99,7 @@ subplot('position', [0.35 0.1 0.3 0.8])
 quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM)
 axis equal
 axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
+rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5, 'LineStyle','--')
 title('Predicted Winds (PARS-BM)')
 xlabel('East longitude')
 
@@ -107,7 +107,7 @@ subplot('position', [0.65 0.1 0.3 0.8])
 quiver(lon_region, lat_region, pred_u_region_TMM, pred_v_region_TMM)
 axis equal
 axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
+rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5, 'LineStyle','--')
 title('Predicted Winds (TMM)')
 xlabel('East longitude')
 
