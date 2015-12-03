@@ -1,16 +1,9 @@
 clear
 
 load('wind.mat')
-load('pred_loc.mat')
 
-rep = 1;
 t = 1;
 p = 2;
-
-est_loc = rec_est_loc(rep, :);
-pred_loc = rec_pred_loc(rep, :);
-idx_est = rec_idx_est(rep, :);
-idx_pred = rec_idx_pred(rep, :);
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
@@ -25,6 +18,8 @@ phi_l = phi_m-width;
 phi_r = phi_m+width;
 
 region = find(theta>=theta_l & theta<=theta_r & phi>=phi_l & phi<=phi_r);
+
+idx_est = setdiff(1:2*n, [region*2-1; region*2]);
 
 % convert to lat and lon
 lat = (pi/2-theta)/pi*180;
@@ -72,7 +67,7 @@ cov_mat_TMM = get_cov(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix,...
     beta, coef, bessel)+diag(kron(ones(1, n), [tau1^2, tau2^2]));
 
 % follow the cokriging formula
-Sigma00 = cov_mat_TMM(idx_est, idx_est)+diag(kron(ones(1, n/2), [tau1^2, tau2^2]));
+Sigma00 = cov_mat_TMM(idx_est, idx_est);
 est_y = samples(t, idx_est)';
 tmp = Sigma00\est_y;
     
@@ -91,23 +86,32 @@ obs_v = obs_y(2:p:end);
 obs_u_region = obs_u(region);
 obs_v_region = obs_v(region);
 
-subplot(1, 3, 1)
+subplot('position', [0.05 0.1 0.3 0.8])
 quiver(lon_region, lat_region, obs_u_region, obs_v_region)
 axis equal
 axis tight
 rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
 title('Observed Winds')
+xlabel('East longitude')
+ylabel('Latitude')
 
-subplot(1, 3, 2)
+subplot('position', [0.35 0.1 0.3 0.8])
 quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM)
 axis equal
 axis tight
 rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
 title('Predicted Winds (PARS-BM)')
+xlabel('East longitude')
 
-subplot(1, 3, 3)
+subplot('position', [0.65 0.1 0.3 0.8])
 quiver(lon_region, lat_region, pred_u_region_TMM, pred_v_region_TMM)
 axis equal
 axis tight
 rectangle('Position',[87 -25 12 11], 'EdgeColor','r')
 title('Predicted Winds (TMM)')
+xlabel('East longitude')
+
+norm(pred_u_region_BM-obs_u_region)
+norm(pred_u_region_TMM-obs_u_region)
+norm(pred_v_region_BM-obs_v_region)
+norm(pred_v_region_TMM-obs_v_region)
