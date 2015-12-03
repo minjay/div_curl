@@ -86,8 +86,8 @@ pred_v_region_TMM = pred_v(region);
 
 % plot
 obs_y = samples(t, :)';
-obs_u = obs_y(1:p:end, :);
-obs_v = obs_y(2:p:end, :);
+obs_u = obs_y(1:p:end);
+obs_v = obs_y(2:p:end);
 obs_u_region = obs_u(region);
 obs_v_region = obs_v(region);
 
