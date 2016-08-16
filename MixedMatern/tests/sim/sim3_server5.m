@@ -2,7 +2,7 @@
 
 clear
 
-savefile = 'MLE2.mat';
+savefile = 'MLE5.mat';
 
 % run on server
 parpool(16)
@@ -31,7 +31,7 @@ ub = [Inf Inf 1 5 5 Inf Inf Inf];
 
 % specify parameters
 % [sigma1, sigma2, rho12, nu1, nu2, a, tau1, tau2]
-beta_all = [1 1 0.5 3 4 2 0.1 0.1];
+beta_all = [1 1 0.5 1.5 2.5 2 0.1 0.1];
 rec_beta_hat = zeros(N, length(beta_all));
 samples_all = mvnrnd(zeros(p*n, 1), eye(p*n), N);
 
