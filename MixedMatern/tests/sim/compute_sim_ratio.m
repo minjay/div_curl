@@ -14,4 +14,8 @@ for i = 1:10
     ratio(i, :) = stderr_boot(i, :)./stderr_emp;
 end
 
+var_names = {'$$\sigma_{1}$$', '$$\sigma_{2}$$', '$$\rho_{12}$$', '$$\nu_{1}$$', '$$\nu_{2}$$', '$$a$$', '$$\tau_{1}$$', '$$\tau_{2}$$'};
+boxplot(ratio, 'Labels', var_names)
+set(gca, 'TickLabelInterpreter', 'latex');
+
 ratio_median = median(ratio, 1);
