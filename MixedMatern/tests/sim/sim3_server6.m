@@ -1,4 +1,5 @@
 % MLE of the Mixed Matern model
+% record the computational time of the case with 5000 data points
 
 clear
 
