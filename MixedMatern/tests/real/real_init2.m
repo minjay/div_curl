@@ -1,3 +1,6 @@
+% prepare the data 
+% remove the EOFs that explain 90% variability (instead of 95%)
+
 clear
 
 % read data
@@ -64,10 +67,10 @@ end
 X = [uwnd_resid_val_v' vwnd_resid_val_v'];
 [U, S, V] = svd(X, 'econ');
 
-% find the 95% threshold
+% find the 90% threshold
 lambda = diag(S).^2;
 var_exp = cumsum(lambda)./sum(lambda);
-thres = find(var_exp>=0.95, 1, 'first'); 
+thres = find(var_exp>=0.90, 1, 'first'); 
 
 % compute the residual fields
 V_L = V(:, 1:thres);
@@ -135,7 +138,7 @@ phi = lon_m_IO_v;
 [x, y, z] = trans_coord(theta, phi);
 
 n = length(x);
-save('loc.mat', 'x', 'y', 'z', 'n', 'theta', 'phi')
+save('loc_90.mat', 'x', 'y', 'z', 'n', 'theta', 'phi')
 
 % downsampling with half resolution
 range_lat = range_lat_IO(1:2:end);
@@ -190,4 +193,4 @@ for i = 1:T
 end
 
 % save as .mat file
-save('wind.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
+save('wind_90.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
