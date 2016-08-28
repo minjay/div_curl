@@ -5,9 +5,9 @@ clear
 parpool(12)
 addpath(genpath('/home/minjay/div_curl'))
 
-savefile = 'pred_err.mat';
+savefile = 'pred_err_90.mat';
 
-load('wind.mat')
+load('wind_90.mat')
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
@@ -59,7 +59,7 @@ for i = 1:B
     rec_idx_pred(i, :) = setdiff(1:p*n, rec_idx_est(i, :));
 end
 
-save('pred_loc.mat', 'rec_pred_loc', 'rec_est_loc', 'rec_idx_est', 'rec_idx_pred')
+save('pred_loc_90.mat', 'rec_pred_loc', 'rec_est_loc', 'rec_idx_est', 'rec_idx_pred')
 
 parfor rep = 1:B
     
