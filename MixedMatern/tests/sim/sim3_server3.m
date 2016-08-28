@@ -1,5 +1,6 @@
 % MLE of the Mixed Matern model
-% high noise case
+% high noise case: the standard deviation of the measurement error is
+% tau1 = tau2 = 0.2
 
 clear
 
