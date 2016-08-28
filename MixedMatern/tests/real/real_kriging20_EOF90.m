@@ -1,4 +1,5 @@
 % cokriging 20 times
+% work on residuals after removing 90% EOFs
 clear
 
 % run on server
