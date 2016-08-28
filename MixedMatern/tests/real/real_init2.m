@@ -72,6 +72,9 @@ lambda = diag(S).^2;
 var_exp = cumsum(lambda)./sum(lambda);
 thres = find(var_exp>=0.90, 1, 'first'); 
 
+% thres is 43
+disp(thres)
+
 % compute the residual fields
 V_L = V(:, 1:thres);
 T_L = X*V_L;
