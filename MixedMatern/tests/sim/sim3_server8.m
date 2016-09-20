@@ -2,15 +2,15 @@
 
 clear
 
-savefile = 'MLE1.mat';
+savefile = 'MLE7.mat';
 
 % run on server
 parpool(8)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
-n_lat = 10;
-n_lon = 20;
+n_lat = 20;
+n_lon = 40;
 
 % regular grid
 [theta, phi, n] = regular_sampling(n_lat, n_lon);
