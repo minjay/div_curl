@@ -46,11 +46,11 @@ end
 tmp_value = zeros(1, n_cand);
 if paral
     parfor i = 1:n_cand
-        tmp_value(i) = negloglik1(beta_cand(:, i));
+        tmp_value(i) = negloglik1(beta_cand(:, i)');
     end
 else
     for i = 1:n_cand
-        tmp_value(i) = negloglik1(beta_cand(:, i));
+        tmp_value(i) = negloglik1(beta_cand(:, i)');
     end
 end
 
