@@ -1,7 +1,7 @@
-function f_value = negloglik_fast(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples, n_lat, n_lon)
-%NEGLOGLIK_FAST   A wrapper of ECMNOBJ_FAST.
+function f_value = negloglik_fast_covariate(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples, theta, phi, n_lat, n_lon)
+%NEGLOGLIK_FAST_COVARIATE   A wrapper of ECMNOBJ_FAST.
 %
-%   F_VALUE = NEGLOGLIK_FAST(BETA_ALL, H_MAT, R, P_CELL, Q_CELL, A_CELL, SAMPLES, N_LAT, N_LON)
+%   F_VALUE = NEGLOGLIK_FAST_COVARIATE(BETA_ALL, H_MAT, R, P_CELL, Q_CELL, A_CELL, SAMPLES, THETA, PHI, N_LAT, N_LON)
 %
 % Inputs: 
 %   BETA_ALL - the current parameter vector
@@ -10,6 +10,8 @@ function f_value = negloglik_fast(beta_all, h_mat, r, P_cell, Q_cell, A_cell, sa
 %   the negative log-likelihood function
 %   SAMPLES - the row vector of stacked (u, v) observations with length
 %   p*n, where p=2
+%   THETA - the latitudes
+%   PHI - the longitudes
 %   n_lat - the number of latitudes
 %   n_lon - the number of longitudes
 %
@@ -35,6 +37,12 @@ disp(['Current estimate of beta is ', mat2str(round(beta_all*1e6)/1e6)])
 [coef, bessel] = get_coef_bessel(beta, r);
 tau1 = beta_all(7);
 tau2 = beta_all(8);
+
+% mean component
+m_u = beta_all(9) + beta_all(10) * theta + beta_all(11) * phi;
+m_v = beta_all(12) + beta_all(13) * theta + beta_all(14) * phi;
+samples(1:2:end) = samples(1:2:end) - m_u;
+samples(2:2:end) = samples(2:2:end) - m_v;
 
 % get c
 c = get_c(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix,...
