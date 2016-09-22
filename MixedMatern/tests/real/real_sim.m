@@ -83,7 +83,7 @@ r_upper = 2*asin(r_upper/2)*6371;
 subplot(2,2,1)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_u_data_upper);
 scatter(X_MED, Y_MED, 'b')
-boxplot_curve(r_upper, cov_u_upper, nb, 'r')
+boxplot_curve(r_upper, cov_u_upper, nb, 'r', 0.5)
 axis square
 axis tight
 xlabel('Great-circle Distance (km)')
@@ -91,7 +91,7 @@ title('Covariance of U Residual Field')
 subplot(2,2,2)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_v_data_upper);
 scatter(X_MED, Y_MED, 'b')
-boxplot_curve(r_upper, cov_v_upper, nb, 'r')
+boxplot_curve(r_upper, cov_v_upper, nb, 'r', 0.5)
 axis square
 axis tight
 xlabel('Great-circle Distance (km)')

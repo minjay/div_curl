@@ -19,7 +19,7 @@ for i=1:nr
 end
 prob=(p-0.5)/nr;
 q1 = chi2inv(prob,nc);
-plot(q1,d3,'+');
+plot(q1,d3,'b+');
 hold on
 plot([min(q1), max(q1)], [min(q1), max(q1)], 'r-.')
 box off

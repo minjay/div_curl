@@ -98,6 +98,7 @@ shading flat
 axis equal
 axis tight
 colorbar
+colormap(hot)
 c_range = max(abs(min(u_field_m_IO(:))), max(u_field_m_IO(:)));
 caxis([-c_range, c_range])
 title('Jan. 2000 u residual [m/s]')
@@ -113,6 +114,7 @@ shading flat
 axis equal
 axis tight
 colorbar
+colormap(hot)
 c_range = max(abs(min(v_field_m_IO(:))), max(v_field_m_IO(:)));
 caxis([-c_range, c_range])
 title('Jan. 2000 v residual [m/s]')
