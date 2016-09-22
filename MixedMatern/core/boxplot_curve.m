@@ -1,6 +1,6 @@
 function boxplot_curve(r_upper, cov_u_upper, nb, col)
 
-[X_MED,Y_MED,Y_LOW,Y_HIGH] = binned_plot(r_upper, cov_u_upper, nb);
+[X_MED,Y_MED,Y_LOW,Y_HIGH] = binned_plot(r_upper, cov_u_upper, nb, 'y_range', 0.5);
 
 hold on
 for i = 1:nb
