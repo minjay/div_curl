@@ -3,12 +3,13 @@ parpool(8)
 addpath(genpath('/home/minjay/div_curl'))
 
 load('wind.mat')
+load('samples_multi_matern.mat')
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
 
 % negative log-likelihood function
-negloglik1 = @(beta_all) negloglik_multi_matern(beta_all, r, samples);
+negloglik1 = @(beta_all) negloglik_multi_matern(beta_all, r, samples_all(1:108, :));
 
 beta_init = [0.21810846 0.203180249 0.058196367 1.23929461 1.1322247 0.184217146 0.156812964 -0.07977680];
 
