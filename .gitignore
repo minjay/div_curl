@@ -1,3 +1,4 @@
 *.m~
 data/
 *.DS_Store
+results/samples_multi_matern.mat
