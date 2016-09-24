@@ -33,7 +33,7 @@ tau2 = beta_all(8);
 
 beta_init = [sigma1 sigma2 rho12 nu1 nu2 a tau1 tau2];
 
-lb = [0 0 -1 0 0 0 0 0];
+lb = [0 0 -1 0 0 0 1e-3 1e-3];
 ub = [Inf Inf 1 5 5 Inf Inf Inf];
 
 samples_all_cell = cell(B, 1);
