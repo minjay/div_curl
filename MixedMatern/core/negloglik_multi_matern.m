@@ -34,6 +34,9 @@ disp(['Current estimate of beta is ', mat2str(round(beta_all*1e6)/1e6)])
 
 sigma1 = beta_all(1);
 sigma2 = beta_all(2);
+rho12 = beta_all(3);
+nu1 = beta_all(4);
+nu2 = beta_all(5);
 a = beta_all(6);
 tau1 = beta_all(7);
 tau2 = beta_all(8);
