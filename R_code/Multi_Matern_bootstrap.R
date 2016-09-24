@@ -1,9 +1,11 @@
+## This script is still under testing. It is problematic.
+
 rm(list=ls())
 
 library(RandomFields)
 library(R.matlab)
 
-RFoptions(modus_operandi="normal")
+RFoptions(modus_operandi="easygoing")
 B <- 200
 
 ## read data
