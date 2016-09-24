@@ -47,9 +47,9 @@ parfor rep = 1:B
     samples = samples_all_cell{rep};
     negloglik1 = @(beta_all) negloglik_multi_matern(beta_all, r, samples);
     
-   % fit the model
-   [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
-   rec_beta_hat(rep, :) = beta_hat; 
+    % fit the model
+    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
+    rec_beta_hat(rep, :) = beta_hat; 
 end
 
 save(savefile, 'rec_beta_hat');
