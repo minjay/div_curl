@@ -109,7 +109,7 @@ plot(phi_diff_sorted, cov_uv_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-covariance of U & V on Latitude ', num2str(lat1), '\circ'])
+title(['Cross-cov of U & V on Lat ', num2str(lat1), '\circ'])
 
 [phi_diff, cov_vu_data_sub, cov_vu_sub, lat1, lat2] = extract_cov(i1, i2, cov_vu_data, cov_vu, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
@@ -120,7 +120,7 @@ plot(phi_diff_sorted, cov_vu_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-covariance of V & U on Latitude ', num2str(lat1), '\circ'])
+title(['Cross-cov of V & U on Lat ', num2str(lat1), '\circ'])
 
 i1 = 8;
 i2 = 10;
