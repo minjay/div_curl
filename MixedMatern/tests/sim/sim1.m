@@ -36,14 +36,14 @@ h = figure;
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.01 0.01], [0.05 0.01]);
 subplot(2, 2, 1)
 plot_quivers(theta, phi, u_div1, v_div1)
-title('Divergence-free with $$(\nu, a)=(2, 3)$$', 'interpreter', 'latex')
+title('Divergence-free with (\nu, a)=(2, 3)')
 subplot(2, 2, 2)
 plot_quivers(theta, phi, u_div2, v_div2)
-title('Divergence-free with $$(\nu, a)=(3, 3)$$', 'interpreter', 'latex')
+title('Divergence-free with (\nu, a)=(3, 3)')
 subplot(2, 2, 3)
 plot_quivers(theta, phi, u_curl1, v_curl1)
-title('Curl-free with $$(\nu, a)=(2, 3)$$', 'interpreter', 'latex')
+title('Curl-free with (\nu, a)=(2, 3)')
 subplot(2, 2, 4)
 plot_quivers(theta, phi, u_curl2, v_curl2)
-title('Curl-free with $$(\nu, a)=(3, 3)$$', 'interpreter', 'latex')
-set(h, 'Position', [0, 0, 1000, 600]);
+title('Curl-free with (\nu, a)=(3, 3)')
+set(h, 'Position', [0, 0, 800, 450]);

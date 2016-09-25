@@ -15,7 +15,7 @@ theta = pi/2-theta;
 phi(phi>pi)=phi(phi>pi)-2*pi;
 
 [HX, HY] = sph2hammer(phi, theta);
-quiver(HX, HY, u, v);
+quiver(HX, HY, u, v, 'b');
 
 hold on
 
@@ -30,5 +30,8 @@ plot(xh,yh,'k');
 
 axis equal
 axis tight
+axis off
+
+set(gca, 'FontSize', 12)
 
 end
