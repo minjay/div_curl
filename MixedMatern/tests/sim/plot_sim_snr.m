@@ -25,9 +25,9 @@ for i = 1:8
     if i<=6
         line([0.5 4.5], [true_values(i) true_values(i)], 'Color', 'k', 'LineStyle', '--')
     else
-        line([0.5 4.5], [0.1 0.1], 'Color', 'k', 'LineStyle', '--')
-        line([0.5 4.5], [0.2 0.2], 'Color', 'k', 'LineStyle', '--')
-        line([0.5 4.5], [0.3 0.3], 'Color', 'k', 'LineStyle', '--')
+        line([0.5 1.5], [0.1 0.1], 'Color', 'k', 'LineStyle', '--')
+        line([1.5 2.5], [0.2 0.2], 'Color', 'k', 'LineStyle', '--')
+        line([2.5 3.5], [0.3 0.3], 'Color', 'k', 'LineStyle', '--')
     end
     hline = findobj(gca, 'tag', 'Median');
     set(hline, 'LineWidth', 1.25)

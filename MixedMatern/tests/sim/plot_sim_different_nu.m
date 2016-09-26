@@ -20,11 +20,11 @@ for i = 1:8
     end
     title(['$$', var_names{i}, '$$'], 'interpreter', 'latex')
     if i==4
-        line([0.5 4.5], [1.5 1.5], 'Color', 'k', 'LineStyle', '--')
-        line([0.5 4.5], [3 3], 'Color', 'k', 'LineStyle', '--')
+        line([1.5 2.5], [1.5 1.5], 'Color', 'k', 'LineStyle', '--')
+        line([0.5 1.5], [3 3], 'Color', 'k', 'LineStyle', '--')
     elseif i==5
-        line([0.5 4.5], [2.5 2.5], 'Color', 'k', 'LineStyle', '--')
-        line([0.5 4.5], [4 4], 'Color', 'k', 'LineStyle', '--')
+        line([1.5 2.5], [2.5 2.5], 'Color', 'k', 'LineStyle', '--')
+        line([0.5 1.5], [4 4], 'Color', 'k', 'LineStyle', '--')
     else
         line([0.5 4.5], [true_values(i) true_values(i)], 'Color', 'k', 'LineStyle', '--')
     end
