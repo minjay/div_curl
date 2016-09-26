@@ -1,6 +1,8 @@
+% consider the data with 90% EOF subtracted
+
 clear
 
-load('wind.mat')
+load('wind_90.mat')
 
 subplot = @(m,n,p) subtightplot (m, n, p, [0.1 0.1], [0.01 0.01], [0.1 0.01]);
 
