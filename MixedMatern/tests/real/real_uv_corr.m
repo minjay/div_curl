@@ -183,3 +183,17 @@ end
 
 % save as .mat file
 save('wind_raw.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
+
+p = 2;
+lat = (pi/2-theta)/pi*180;
+lon = phi/pi*180;
+
+% let's pretend they are replicates for now
+corr_mat_data = corr(samples);
+corr_uv_data = corr_mat_data(1:p:end, 2:p:end);
+
+clear subplot
+subplot(1, 2, 1)
+scatter(lat, diag(corr_uv_data), 'b')
+subplot(1, 2, 2)
+scatter(lon, diag(corr_uv_data), 'b')
