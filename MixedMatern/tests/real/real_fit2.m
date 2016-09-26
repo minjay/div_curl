@@ -4,7 +4,7 @@
 parpool(8)
 addpath(genpath('/home/minjay/div_curl'))
 
-load('wind.mat')
+load('wind_90.mat')
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
