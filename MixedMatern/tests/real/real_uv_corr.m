@@ -62,18 +62,8 @@ end
 
 % construct data matrix
 X = [uwnd_resid_val_v' vwnd_resid_val_v'];
-[U, S, V] = svd(X, 'econ');
 
-% find the 95% threshold
-lambda = diag(S).^2;
-var_exp = cumsum(lambda)./sum(lambda);
-thres = find(var_exp>=0.95, 1, 'first'); 
-
-% compute the residual fields
-V_L = V(:, 1:thres);
-T_L = X*V_L;
-X_L = T_L*V_L';
-r = X-X_L;
+r = X;
 
 % find the range of the region of Indian Ocean (IO)
 % [1 2]*[-1 0.5]
@@ -192,4 +182,4 @@ for i = 1:T
 end
 
 % save as .mat file
-save('wind.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
+save('wind_raw.mat', 'x', 'y', 'z', 'n', 'samples', 'theta', 'phi')
