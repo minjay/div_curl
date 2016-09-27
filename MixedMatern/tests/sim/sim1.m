@@ -33,7 +33,7 @@ beta_all = [0 1 0 3 3 3 0 0];
 
 % plot
 h = figure;
-subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.01 0.01], [0.05 0.01]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0 0.02], [0 0.02], [0.05 0.01]);
 subplot(2, 2, 1)
 plot_quivers(theta, phi, u_div1, v_div1)
 title('Divergence-free with (\nu, 1/a)=(2, 1/3)')
@@ -46,4 +46,3 @@ title('Curl-free with (\nu, 1/a)=(2, 1/3)')
 subplot(2, 2, 4)
 plot_quivers(theta, phi, u_curl2, v_curl2)
 title('Curl-free with (\nu, 1/a)=(3, 1/3)')
-set(h, 'Position', [0, 0, 800, 450]);
