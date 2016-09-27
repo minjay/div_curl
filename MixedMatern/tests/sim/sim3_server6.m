@@ -1,5 +1,7 @@
 % MLE of the Mixed Matern model
 % record the computational time of the case with 5000 data points
+% no parallel computation
+% the only "true" is for LHS sampling
 
 clear
 
