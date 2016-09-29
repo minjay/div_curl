@@ -16,6 +16,8 @@ end
 
 var_names = {'$$\sigma_{1}$$', '$$\sigma_{2}$$', '$$\rho_{12}$$', '$$\nu_{1}$$', '$$\nu_{2}$$', '$$a$$', '$$\tau_{1}$$', '$$\tau_{2}$$'};
 boxplot(ratio, 'Labels', var_names)
+ylabel('bootstrap stderr/empirical stderr')
 set(gca, 'TickLabelInterpreter', 'latex');
+set(gca, 'FontSize', 12);
 
 ratio_median = median(ratio, 1);
