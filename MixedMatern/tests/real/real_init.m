@@ -101,9 +101,10 @@ colorbar
 colormap(hot)
 c_range = max(abs(min(u_field_m_IO(:))), max(u_field_m_IO(:)));
 caxis([-c_range, c_range])
-title('Jan. 2000 u residual [m/s]')
+title('Jan. 2000 U Residual [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
+set(gca, 'FontSize', 12)
 subplot(1, 2, 2)
 v_field_m = NaN(n_tot, 1);
 v_field_m(~idx_NaN) = v_field;
@@ -117,9 +118,10 @@ colorbar
 colormap(hot)
 c_range = max(abs(min(v_field_m_IO(:))), max(v_field_m_IO(:)));
 caxis([-c_range, c_range])
-title('Jan. 2000 v residual [m/s]')
+title('Jan. 2000 V Residual [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
+set(gca, 'FontSize', 12)
 set(h, 'Position', [0, 0, 550, 350]);
 
 % save the locations
