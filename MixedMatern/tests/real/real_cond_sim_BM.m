@@ -86,28 +86,28 @@ obs_v = obs_y(2:p:end);
 obs_u_region = obs_u(region);
 obs_v_region = obs_v(region);
 
-subplot('position', [0.05 0.1 0.3 0.8])
-quiver(lon_region, lat_region, obs_u_region, obs_v_region)
+subplot('position', [0.05 0.125 0.3 0.8])
+quiver(lon_region, lat_region, obs_u_region, obs_v_region, 'b')
 axis equal
-axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
+axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
+rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
 title('Observed Wind Field')
 xlabel('East longitude')
 ylabel('Latitude')
 
-subplot('position', [0.35 0.1 0.3 0.8])
-quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM)
+subplot('position', [0.35 0.125 0.3 0.8])
+quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM, 'b')
 axis equal
-axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
+axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
+rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
 title('Predicted Wind Field (PARS-BM)')
 xlabel('East longitude')
 
-subplot('position', [0.65 0.1 0.3 0.8])
-quiver(lon_region, lat_region, pred_u_region_TMM, pred_v_region_TMM)
+subplot('position', [0.65 0.125 0.3 0.8])
+quiver(lon_region, lat_region, pred_u_region_TMM, pred_v_region_TMM, 'b')
 axis equal
-axis tight
-rectangle('Position',[87 -25 12 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
+axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
+rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
 title('Predicted Wind Field (TMM)')
 xlabel('East longitude')
 
