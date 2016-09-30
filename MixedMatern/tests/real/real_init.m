@@ -101,7 +101,7 @@ colorbar
 colormap(hot)
 c_range = max(abs(min(u_field_m_IO(:))), max(u_field_m_IO(:)));
 caxis([-c_range, c_range])
-title('Jan. 2000 U Residual [m/s]')
+title('Jan. 2000 U Residual Field [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
 set(gca, 'FontSize', 12)
@@ -118,7 +118,7 @@ colorbar
 colormap(hot)
 c_range = max(abs(min(v_field_m_IO(:))), max(v_field_m_IO(:)));
 caxis([-c_range, c_range])
-title('Jan. 2000 V Residual [m/s]')
+title('Jan. 2000 V Residual Field [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
 set(gca, 'FontSize', 12)
