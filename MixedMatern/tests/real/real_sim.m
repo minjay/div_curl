@@ -82,17 +82,15 @@ r_upper = 2*asin(r_upper/2)*6371;
 
 subplot(2,2,1)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_u_data_upper);
-scatter(X_MED, Y_MED, 'b')
+plot(X_MED, Y_MED, 'bo')
 boxplot_curve(r_upper, cov_u_upper, nb, 'r', 0.5)
-axis square
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of U Residual Field')
 subplot(2,2,2)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_v_data_upper);
-scatter(X_MED, Y_MED, 'b')
+plot(X_MED, Y_MED, 'bo')
 boxplot_curve(r_upper, cov_v_upper, nb, 'r', 0.5)
-axis square
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of V Residual Field')
@@ -105,11 +103,10 @@ corr_mat_data = corr(samples);
 corr_uv_data = corr_mat_data(1:p:end, 2:p:end);
 
 subplot(2,2,3)
-scatter(lat, diag(corr_uv_data), 'b')
+plot(lat, diag(corr_uv_data), 'bo')
 hold on
 y_smooth = smooth(lat, diag(corr_uv_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 2);
-axis square
 axis([min(lat) max(lat) -1 1])
 hline = refline(0, 0);
 set(hline,'Color','r')
@@ -120,13 +117,12 @@ title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline], {'Empirical','Fitted'})
 
 subplot(2,2,4)
-scatter(lon, diag(corr_uv_data), 'b')
+plot(lon, diag(corr_uv_data), 'bo')
 hold on
 [sorted_lon, index] = sort(lon);
 y = diag(corr_uv_data);
 y_smooth = smooth(sorted_lon, y(index), 0.2, 'loess');
 h_emp = plot(sorted_lon, y_smooth, 'g', 'LineWidth', 2);
-axis square
 axis([min(lon) max(lon) -1 1])
 hline = refline(0, 0);
 set(hline,'Color','r')
@@ -135,5 +131,3 @@ set(hline,'LineStyle', '--')
 xlabel('Longitude')
 title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline], {'Empirical','Fitted'})
-
-set(h, 'Position', [0, 0, 600, 600]);
