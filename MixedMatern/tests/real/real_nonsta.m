@@ -40,6 +40,8 @@ cov_v = cov_mat(2:p:end, 2:p:end);
 lat = (pi/2-theta)/pi*180;
 lon = phi/pi*180;
 
+subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.1 0.05], [0.05 0.02]);
+
 % compare true and fitted variance at each location
 % plot against latitudes and longitudes 
 subplot(2, 2, 1)

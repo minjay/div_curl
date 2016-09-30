@@ -44,6 +44,8 @@ cov_vu = cov_mat(2:p:end, 1:p:end);
 lat = (pi/2-theta)/pi*180;
 lon = phi/pi*180;
 
+subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.1 0.05], [0.05 0.02]);
+
 % plot covariance of u/v
 
 i1 = 10;
@@ -58,7 +60,7 @@ hold on
 plot(phi_diff_sorted, cov_u_sub(index), 'r', 'LineWidth', 2)
 axis tight
 ylim([-0.1 0.3])
-title(['Covariance of U on Latitude ', num2str(lat1), '\circ'])
+title(['Covariance of U Residual on Latitude ', num2str(lat1), '\circ'])
 [phi_diff, cov_v_data_sub, cov_v_sub, lat1, lat2] = extract_cov(i1, i2, cov_v_data, cov_v, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 2, 2)
@@ -68,7 +70,7 @@ hold on
 plot(phi_diff_sorted, cov_v_sub(index), 'r', 'LineWidth', 2)
 axis tight
 ylim([-0.1 0.3])
-title(['Covariance of V on Latitude ', num2str(lat1), '\circ'])
+title(['Covariance of V Residual on Latitude ', num2str(lat1), '\circ'])
 
 i1 = 8;
 i2 = 10;
@@ -82,7 +84,7 @@ hold on
 plot(phi_diff_sorted, cov_u_sub(index), 'r', 'LineWidth', 2)
 axis tight
 ylim([-0.1 0.3])
-title(['Covariance of U on Latitude ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
+title(['Covariance of U Residual on Latitude ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
 [phi_diff, cov_v_data_sub, cov_v_sub, lat1, lat2] = extract_cov(i1, i2, cov_v_data, cov_v, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 2, 4)
@@ -92,7 +94,7 @@ hold on
 plot(phi_diff_sorted, cov_v_sub(index), 'r', 'LineWidth', 2)
 axis tight
 ylim([-0.1 0.3])
-title(['Covariance of V on Latitude ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
+title(['Covariance of V Residual on Latitude ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
 
 
 % plot cross-covariance between u and v
@@ -109,7 +111,7 @@ plot(phi_diff_sorted, cov_uv_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-cov of U & V on Lat ', num2str(lat1), '\circ'])
+title(['Cross-cov of U & V Residual on Lat ', num2str(lat1), '\circ'])
 
 [phi_diff, cov_vu_data_sub, cov_vu_sub, lat1, lat2] = extract_cov(i1, i2, cov_vu_data, cov_vu, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
@@ -120,7 +122,7 @@ plot(phi_diff_sorted, cov_vu_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-cov of V & U on Lat ', num2str(lat1), '\circ'])
+title(['Cross-cov of V & U Residual on Lat ', num2str(lat1), '\circ'])
 
 i1 = 8;
 i2 = 10;
@@ -134,7 +136,7 @@ plot(phi_diff_sorted, cov_uv_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-cov of U & V on Lat ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
+title(['Cross-cov of U & V Residual on Lat ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
 
 [phi_diff, cov_vu_data_sub, cov_vu_sub, lat1, lat2] = extract_cov(i1, i2, cov_vu_data, cov_vu, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
@@ -145,4 +147,4 @@ plot(phi_diff_sorted, cov_vu_sub(index), 'r', 'LineWidth', 2)
 xlabel('\phi_s - \phi_t')
 axis tight
 ylim([-0.1 0.15])
-title(['Cross-cov of V & U on Lat ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
+title(['Cross-cov of V & U Residual on Lat ', num2str(lat1), '\circ & ', num2str(lat2), '\circ'])
