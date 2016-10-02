@@ -2,19 +2,19 @@
 % In this script, we consider the case where covariates are included in the
 % model.
 % The covariates we included are longitude and latitude.
-% grid=20*40
+% grid=15*30
 
 clear
 
-savefile = 'MLE_covariate.mat';
+savefile = 'MLE_covariate2.mat';
 
 % run on server
-parpool(8)
+parpool(16)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
-n_lat = 20;
-n_lon = 40;
+n_lat = 15;
+n_lon = 30;
 
 % regular grid
 [theta, phi, n] = regular_sampling(n_lat, n_lon);
