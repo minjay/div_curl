@@ -2,15 +2,15 @@
 
 clear
 
-savefile = 'MLE1.mat';
+savefile = 'MLE_healpix.mat';
 
 % run on server
-parpool(8)
+parpool(32)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
 % HEALPix grid
-[theta, phi, n] = HEALPix_sampling(2);
+[theta, phi, n] = HEALPix_sampling(3);
 
 % convert coordinates
 [x, y, z] = trans_coord(theta, phi);
