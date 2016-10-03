@@ -5,7 +5,8 @@ clear
 savefile = 'MLE_healpix.mat';
 
 % run on server
-parpool(32)
+% 24 is the maximum on hannan
+parpool(24)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
