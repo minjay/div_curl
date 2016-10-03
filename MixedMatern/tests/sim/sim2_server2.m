@@ -1,18 +1,17 @@
 % MLE of the Mixed Matern model
-% number of grid points=768
+% number of grid points=192
 
 clear
 
-savefile = 'MLE_healpix.mat';
+savefile = 'MLE_healpix2.mat';
 
 % run on server
-% 24 is the maximum on hannan
-parpool(24)
+parpool(12)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
 % HEALPix grid
-[theta, phi, n] = HEALPix_sampling(3);
+[theta, phi, n] = HEALPix_sampling(2);
 
 % convert coordinates
 [x, y, z] = trans_coord(theta, phi);
