@@ -23,4 +23,4 @@ samples = mvnrnd(zeros(p*n, 1), eye(p*n))';
 [u, v] = sim_mix(n, beta_all, samples, h_mat, r, P_cell, Q_cell, A_cell);
 
 filename = 'sim_data_mix.mat';
-save(filename, 'u', 'v')
+save(filename, 'u', 'v', 'theta', 'phi', 'n', 'x', 'y', 'z')
