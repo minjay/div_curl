@@ -6,7 +6,7 @@ library(R.matlab)
 ## two warnings
 ## seem to be bugs
 
-RFoptions(modus_operandi="easygoing")
+RFoptions(modus_operandi="normal")
 
 ## read data
 ## change the directory if necessary
