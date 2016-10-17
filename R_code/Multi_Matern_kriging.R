@@ -9,7 +9,7 @@ B <- 20
 ## two warnings
 ## seem to be bugs
 
-RFoptions(modus_operandi="sloppy")
+RFoptions(modus_operandi="easygoing")
 
 ## read data
 ## change the directory if necessary
