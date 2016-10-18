@@ -6,7 +6,9 @@ library(R.matlab)
 ## two warnings
 ## seem to be bugs
 
-RFoptions(modus_operandi="normal")
+## version of "RandomFields": 3.0.62
+
+RFoptions(modus_operandi="sloppy")
 
 ## read data
 ## change the directory if necessary
