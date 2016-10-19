@@ -35,7 +35,7 @@ ub = [Inf Inf 1 5 5 Inf Inf Inf, Inf, Inf, Inf, Inf, Inf, Inf];
 
 % specify parameters
 % [sigma1, sigma2, rho12, nu1, nu2, a, tau1, tau2, c10, c11, c12, c20, c21, c22]
-beta_all = [1 1 0.5 3 4 2 0.1 0.1, 5, 5, -10, 10, -15, 20];
+beta_all = [1 1 0.5 3 4 2 0.1 0.1, 5, 10, -50, 10, -30, 100];
 beta_partial = beta_all(1:8);
 rec_beta_hat = zeros(N, length(beta_all));
 samples_all = mvnrnd(zeros(p*n, 1), eye(p*n), N);
