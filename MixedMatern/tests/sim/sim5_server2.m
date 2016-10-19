@@ -1,7 +1,7 @@
 % MLE of the Mixed Matern model
 % In this script, we consider the case where covariates are included in the
 % model.
-% The covariates we included are longitude and latitude.
+% The covariates we included are sin(longitude) and cos(latitude).
 % grid=15*30
 
 clear
@@ -40,8 +40,8 @@ beta_partial = beta_all(1:8);
 rec_beta_hat = zeros(N, length(beta_all));
 samples_all = mvnrnd(zeros(p*n, 1), eye(p*n), N);
 % specify mean component
-m_u = beta_all(9) + beta_all(10) * theta + beta_all(11) * phi;
-m_v = beta_all(12) + beta_all(13) * theta + beta_all(14) * phi;
+m_u = beta_all(9) + beta_all(10) * cos(theta) + beta_all(11) * sin(phi);
+m_v = beta_all(12) + beta_all(13) * cos(theta) + beta_all(14) * sin(phi);
 
 parfor rep = 1:N
     samples = samples_all(rep, :)';
@@ -52,7 +52,7 @@ parfor rep = 1:N
     v = v + m_v;
     
     % use linear regression to get initial values of coefficient c's
-    X = [ones(n, 1) theta phi];
+    X = [ones(n, 1) cos(theta) sin(phi)];
     coef_u = (X' * X) \ (X' * u);
     coef_v = (X' * X) \ (X' * v);
     

@@ -39,8 +39,8 @@ tau1 = beta_all(7);
 tau2 = beta_all(8);
 
 % mean component
-m_u = beta_all(9) + beta_all(10) * theta + beta_all(11) * phi;
-m_v = beta_all(12) + beta_all(13) * theta + beta_all(14) * phi;
+m_u = beta_all(9) + beta_all(10) * cos(theta) + beta_all(11) * sin(phi);
+m_v = beta_all(12) + beta_all(13) * cos(theta) + beta_all(14) * sin(phi);
 samples(1:2:end) = samples(1:2:end) - m_u';
 samples(2:2:end) = samples(2:2:end) - m_v';
 
