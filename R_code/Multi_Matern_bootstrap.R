@@ -4,8 +4,11 @@ rm(list=ls())
 
 library(RandomFields)
 library(R.matlab)
+require(parallel)
 
-RFoptions(modus_operandi="easygoing")
+## version of "RandomFields": 3.0.62
+
+RFoptions(modus_operandi="sloppy")
 B <- 200
 
 ## read data
@@ -48,7 +51,7 @@ pars.model <- nug + RMbiwm(nudiag = c(NA, NA), scale = NA, cdiag = c(NA, NA),
 #################################
 ## parametric bootstrap        ##
 #################################
-for (i in 1:B){
+fit.model <- function(i){
   index <- ((i-1)*n.rep+1):(i*n.rep)
   samples <- samples.boot[index, ]
   U <- t(samples[, seq(1, n.obs*2, 2)])
@@ -59,4 +62,10 @@ for (i in 1:B){
   # users.guess takes a model object
   pars <- RFfit(pars.model, distances = Dist.mat, dim = 3, data = UV, users.guess = pars.model.sim,
                 optim.control = list(trace = TRUE))
+  param <- print(pars)$param
+  return(param[1, ])
 }
+
+param.BM <- mclapply(1:B, fit.model, mc.cores = 20)
+param.BM <- t(matrix(unlist(param.BM), 8, B))
+writeMat('param_boot_R.mat', param_BM = param.BM)
