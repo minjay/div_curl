@@ -9,7 +9,7 @@ clear
 savefile = 'MLE_covariate.mat';
 
 % run on server
-parpool(8)
+parpool(16)
 addpath(genpath('/home/minjay/div_curl'))
 addpath(genpath('/home/minjay/MEALPix'))
 
