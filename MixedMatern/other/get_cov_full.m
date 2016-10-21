@@ -31,13 +31,11 @@ for j = 1:n
         idx = idx+1;
         mat = Matern_func(P_cell{i}, Q_cell{i}, P_cell{j}, Q_cell{j}, A_cell{i}, A_cell{j}, h_mat{i, j}, r(i, j), beta, coef, bessel(idx, :));
         cov_mat(p*(i-1)+1:p*i, p*(j-1)+1:p*j) = mat;
-        mat = Matern_func(P_cell{j}, Q_cell{j}, P_cell{i}, Q_cell{i}, A_cell{j}, A_cell{i}, h_mat{j, i}, r(j, i), beta, coef, bessel(idx, :));
+        mat = Matern_func(P_cell{j}, Q_cell{j}, P_cell{i}, Q_cell{i}, A_cell{j}, A_cell{i}, h_mat{i, j}, r(i, j), beta, coef, bessel(idx, :));
         cov_mat(p*(j-1)+1:p*j, p*(i-1)+1:p*i) = mat;
     end      
     % when i=j
     mat = Matern_func(P_cell{j}, Q_cell{j}, P_cell{j}, Q_cell{j}, A_cell{j}, A_cell{j}, h_mat{j, j}, r(j, j), beta, zeros(1, 3), zeros(1, 6));
-    % make it sym
-    mat = (mat+mat')/2;
     cov_mat(p*(j-1)+1:p*j, p*(j-1)+1:p*j) = mat;      
 end
 
