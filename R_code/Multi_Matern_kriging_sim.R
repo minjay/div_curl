@@ -67,6 +67,6 @@ fit.model <- function(rep){
   return(param[1, ])
 }
 
-param.BM <- mclapply(1:B, fit.model, mc.cores = 20)
+param.BM <- mclapply(1:B, fit.model, mc.cores = 10)
 param.BM <- t(matrix(unlist(param.BM), 8, B))
 writeMat('param_kriging_sim.mat', param_BM = param.BM)
