@@ -1,6 +1,8 @@
 % simulation, prediction, CV 500 times, PARS_BM
 clear
 
+addpath(genpath('/home/minjay/div_curl'))
+
 p = 2;
 B = 500;
 
