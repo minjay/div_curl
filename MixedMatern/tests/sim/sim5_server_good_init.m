@@ -6,7 +6,7 @@
 
 clear
 
-savefile = 'MLE_covariate3.mat';
+savefile = 'MLE_covariate_good_init.mat';
 
 % run on server
 parpool(16)
@@ -36,6 +36,7 @@ ub = [Inf Inf 1 5 5 Inf Inf Inf, Inf, Inf, Inf, Inf, Inf, Inf];
 % specify parameters
 % [sigma1, sigma2, rho12, nu1, nu2, a, tau1, tau2, c10, c11, c12, c20, c21, c22]
 beta_all = [1 1 0.5 3 4 2 0.1 0.1, 5, 5, -1, 10, -15, 3];
+beta_init = beta_all;
 beta_partial = beta_all(1:8);
 rec_beta_hat = zeros(N, length(beta_all));
 samples_all = mvnrnd(zeros(p*n, 1), eye(p*n), N);
@@ -51,18 +52,10 @@ parfor rep = 1:N
     u = u + m_u;
     v = v + m_v;
     
-    % use linear regression to get initial values of coefficient c's
-    X = [ones(n, 1) theta theta.^2];
-    coef_u = (X' * X) \ (X' * u);
-    coef_v = (X' * X) \ (X' * v);
-    
     samples = reshape([u v]', 1, p*n);
 
     % negative log-likelihood function
     negloglik1 = @(beta_all) negloglik_fast_covariate(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples, theta, phi, n_lat, n_lon);
-
-    % rand search
-    beta_init = rand_search(negloglik1, 100, [0 0 -1 1 1 5 1e-3 1e-3 coef_u' coef_v'], [5 5 1 5 5 5 1e-3 1e-3 coef_u' coef_v'], true, false);
 
     % fit the model
     [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
