@@ -2,3 +2,5 @@
 data/
 *.DS_Store
 results/samples_multi_matern.mat
+
+results/MLE_covariate_good_init.mat
