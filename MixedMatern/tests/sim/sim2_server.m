@@ -24,7 +24,7 @@ p = 2;
 % set the same seed
 rng('default')
 
-N = 500;
+N = 100;
 lb = [0 0 -1 1 1 0 0 0];
 ub = [Inf Inf 1 10 10 Inf Inf Inf];
 
