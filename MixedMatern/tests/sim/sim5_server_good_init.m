@@ -29,13 +29,13 @@ p = 2;
 % set the same seed
 rng('default')
 
-N = 500;
+N = 100;
 lb = [0 0 -1 1 1 0 0 0 -Inf, -Inf, -Inf, -Inf, -Inf, -Inf];
 ub = [Inf Inf 1 5 5 Inf Inf Inf, Inf, Inf, Inf, Inf, Inf, Inf];
 
 % specify parameters
 % [sigma1, sigma2, rho12, nu1, nu2, a, tau1, tau2, c10, c11, c12, c20, c21, c22]
-beta_all = [1 1 0.5 2 3 2 0.1 0.1, 5, 5, -1, 10, -15, 3];
+beta_all = [1 1 0.5 3 4 2 0.1 0.1, 5, 5, -1, 10, -15, 3];
 beta_init = beta_all;
 beta_partial = beta_all(1:8);
 rec_beta_hat = zeros(N, length(beta_all));
@@ -58,7 +58,7 @@ parfor rep = 1:N
     negloglik1 = @(beta_all) negloglik_fast_covariate(beta_all, h_mat, r, P_cell, Q_cell, A_cell, samples, theta, phi, n_lat, n_lon);
 
     % fit the model
-    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
+    [beta_hat, f_min] = Matern_fit_long(negloglik1, beta_init, lb, ub, @mycon, false);
     
     rec_beta_hat(rep, :) = beta_hat;
 end
