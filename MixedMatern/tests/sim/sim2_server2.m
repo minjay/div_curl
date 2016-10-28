@@ -23,9 +23,9 @@ p = 2;
 % set the same seed
 rng('default')
 
-N = 500;
+N = 100;
 lb = [0 0 -1 1 1 0 0 0];
-ub = [Inf Inf 1 10 10 Inf Inf Inf];
+ub = [Inf Inf 1 5 5 Inf Inf Inf];
 
 % specify parameters
 % [sigma1, sigma2, rho12, nu1, nu2, a, tau1, tau2]
