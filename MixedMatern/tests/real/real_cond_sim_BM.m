@@ -121,6 +121,7 @@ obs_u_region = obs_u(region);
 obs_v_region = obs_v(region);
 
 subplot('position', [0.05 0.55 0.3 0.4])
+% note that "quiver" automatically scales the arrows to fit within the grid
 quiver(lon_region, lat_region, obs_u_region, obs_v_region, 'b')
 axis equal
 axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
