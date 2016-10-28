@@ -76,7 +76,7 @@ nb = 100;
 
 h = figure;
 
-subplot = @(m,n,p) subtightplot (m, n, p, [0.1 0.05], [0.075 0.05], [0.05 0.01]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.05], [0.075 0.05], [0.05 0.01]);
 
 r_upper = 2*asin(r_upper/2)*6371;
 
