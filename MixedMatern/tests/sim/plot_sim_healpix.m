@@ -1,7 +1,7 @@
 load('MLE_healpix.mat')
 rec_beta_hat2 = rec_beta_hat;
 load('MLE_healpix2.mat')
-rec_beta_hat1 = rec_beta_hat(1:100, :);
+rec_beta_hat1 = rec_beta_hat;
 
 h = figure;
 subplot = @(m,n,p) subtightplot (m, n, p, [0.1 0.075], [0.1 0.05], [0.05 0.02]);
