@@ -5,7 +5,7 @@ rec_beta_hat2 = rec_beta_hat;
 load('MLE_covariate3.mat')
 rec_beta_hat1 = rec_beta_hat;
 
-subplot = @(m,n,p) subtightplot (m, n, p, [0.075 0.07], [0.1 0.05], [0.05 0.02]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.075 0.065], [0.05 0.04], [0.05 0.02]);
 
 var_names = {'\sigma_{1}', '\sigma_{2}', '\rho_{12}', '\nu_{1}', '\nu_{2}',...
     '1/a', '\tau_{1}', '\tau_{2}', '\beta_{10}', '\beta_{11}', '\beta_{12}',...
