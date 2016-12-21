@@ -1,5 +1,5 @@
 # div_curl
-The codes accompanying the paper "Modeling tangential vector fields on the sphere". **Note that this description is out of date and needs to be updated.**
+The codes accompanying the paper "Modeling tangential vector fields on a sphere". **Note that this description is out of date and needs to be updated.**
 
 The aim of this repository is to allow the reproduction of all numerical results reported in this paper.
 
