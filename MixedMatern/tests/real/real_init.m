@@ -82,7 +82,7 @@ range_lon_IO = find(lon>=1, 1, 'first'):find(lon<=2, 1, 'last');
 
 % plot the residual fields
 h = figure;
-subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.075], [0.01 0.01], [0.075 0.01]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.1], [0.01 0.01], [0.075 0.01]);
 i = 1;
 u_field = r(i, 1:n_tot_val)';
 v_field = r(i, n_tot_val+1:end)';
@@ -105,6 +105,7 @@ title('Jan. 2000 U Residual Field [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
 set(gca, 'FontSize', 12)
+axis square
 subplot(1, 2, 2)
 v_field_m = NaN(n_tot, 1);
 v_field_m(~idx_NaN) = v_field;
@@ -122,7 +123,8 @@ title('Jan. 2000 V Residual Field [m/s]')
 xlabel('East longitude')
 ylabel('Latitude')
 set(gca, 'FontSize', 12)
-set(h, 'Position', [0, 0, 550, 350]);
+set(h, 'Position', [0, 0, 550, 250]);
+axis square
 
 % save the locations
 u_field_m_IO_v = u_field_m_IO(:);
