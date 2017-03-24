@@ -40,6 +40,8 @@ cov_v_data = cov_mat_data(2:p:end, 2:p:end);
 
 idx_upper = find(triu(ones(n)));
 r_upper = r(idx_upper);
+r_upper = 2*asin(r_upper/2)*6371;
+[r_upper_sort, r_upper_index] = sort(r_upper);
 cov_u_data_upper = cov_u_data(idx_upper);
 cov_v_data_upper = cov_v_data(idx_upper);
 
@@ -100,10 +102,7 @@ cov_v_upper_BM = cov_v_BM(idx_upper);
 
 h = figure;
 
-subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.05], [0.075 0.05], [0.05 0.01]);
-
-r_upper = 2*asin(r_upper/2)*6371;
-[r_upper_sort, r_upper_index] = sort(r_upper);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.075 0.05], [0.05 0.01]);
 
 subplot(2,2,1)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_u_data_upper);
@@ -162,7 +161,7 @@ hline = refline(0, 0);
 set(hline,'Color','r')
 set(hline,'LineWidth', 1.5)
 set(hline,'LineStyle', '--')
-ph = plot(lon, diag(corr_uv_BM), 'c-.', 'LineWidth', 1.5);
+ph = plot(sorted_lon, diag(corr_uv_BM(index, index)), 'c-.', 'LineWidth', 1.5);
 xlabel('Longitude (degree)')
 title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline ph], {'Empirical','TMM', 'PARS-BM'})
