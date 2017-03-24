@@ -120,30 +120,32 @@ obs_v = obs_y(2:p:end);
 obs_u_region = obs_u(region);
 obs_v_region = obs_v(region);
 
-subplot('position', [0.05 0.55 0.3 0.4])
+subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.05], [0.075 0.02], [0.05 0.02]);
+
+subplot(1, 5, 1)
 % note that "quiver" automatically scales the arrows to fit within the grid
 quiver(lon_region, lat_region, obs_u_region, obs_v_region, 'b')
 axis equal
 axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
 rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
-title('Observed Wind Field')
+title('Observed')
 xlabel('East longitude')
 ylabel('Latitude')
 
-subplot('position', [0.35 0.55 0.3 0.4])
-quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM, 'b')
-axis equal
-axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
-rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
-title('Predicted Wind Field (PARS-BM)')
-xlabel('East longitude')
-
-subplot('position', [0.65 0.55 0.3 0.4])
+subplot(1, 5, 2)
 quiver(lon_region, lat_region, pred_u_region_TMM, pred_v_region_TMM, 'b')
 axis equal
 axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
 rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
-title('Predicted Wind Field (TMM)')
+title('Predicted (TMM)')
+xlabel('East longitude')
+
+subplot(1, 5, 3)
+quiver(lon_region, lat_region, pred_u_region_BM, pred_v_region_BM, 'b')
+axis equal
+axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
+rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
+title('Predicted (PARS-BM)')
 xlabel('East longitude')
 
 norm(pred_u_region_BM-obs_u_region)
@@ -151,19 +153,16 @@ norm(pred_u_region_TMM-obs_u_region)
 norm(pred_v_region_BM-obs_v_region)
 norm(pred_v_region_TMM-obs_v_region)
 
-subplot('position', [0.15 0.05 0.3 0.4])
+subplot(1, 5, 4)
 quiver(lon_region, lat_region, pred_u_region_curl, pred_v_region_curl, 'b')
 axis equal
 axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
-rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
-title('Predicted Curl-free Component (TMM)')
+title('Predicted Curl-free (TMM)')
 xlabel('East longitude')
-ylabel('Latitude')
 
-subplot('position', [0.55 0.05 0.3 0.4])
+subplot(1, 5, 5)
 quiver(lon_region, lat_region, pred_u_region_div, pred_v_region_div, 'b')
 axis equal
 axis([min(lon_region)-1 max(lon_region)+1 min(lat_region) max(lat_region)])
-rectangle('Position',[87 -25 10 11], 'EdgeColor', 'r', 'LineWidth', 1.5)
-title('Predicted Div-free Component (TMM)')
+title('Predicted Div-free (TMM)')
 xlabel('East longitude')
