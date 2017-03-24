@@ -78,8 +78,9 @@ legend([ph1 ph2], {'TMM', 'PARS-BM'})
 subplot(2, 2, 2)
 plot(lon, diag(cov_u_data), 'bo')
 hold on
+[lon_sorted, index] = sort(lon);
 plot(lon, diag(cov_u), 'r', 'LineWidth', 1.5)
-plot(lon, diag(cov_u_BM), 'c-.', 'LineWidth', 1.5)
+plot(lon_sorted, diag(cov_u_BM(index, index)), 'c-.', 'LineWidth', 1.5)
 axis tight
 title('Variance of U Residual Field')
 ylim([0 1])
@@ -99,7 +100,7 @@ subplot(2, 2, 4)
 plot(lon, diag(cov_v_data), 'bo')
 hold on
 plot(lon, diag(cov_v), 'r', 'LineWidth', 1.5)
-plot(lon, diag(cov_v_BM), 'c-.', 'LineWidth', 1.5)
+plot(lon_sorted, diag(cov_v_BM(index, index)), 'c-.', 'LineWidth', 1.5)
 axis tight
 title('Variance of V Residual Field')
 ylim([0 1])
