@@ -6,7 +6,7 @@ load('MLE5.mat')
 rec_beta_hat2 = rec_beta_hat;
 
 h = figure;
-subplot = @(m,n,p) subtightplot (m, n, p, [0.1 0.075], [0.1 0.05], [0.05 0.02]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.1 0.075], [0.05 0.05], [0.03 0.02]);
 
 var_names = {'\sigma_{1}', '\sigma_{2}', '\rho_{12}', '\nu_{1}', '\nu_{2}', '1/a', '\tau_{1}', '\tau_{2}'};
 lab_cell = {'smooth', 'rough'};
@@ -31,6 +31,7 @@ for i = 1:8
     hline = findobj(gca, 'tag', 'Median');
     set(hline, 'LineWidth', 1.25)
     set(gca, 'FontSize', 12)
+    axis square
 end
 
-set(h, 'Position', [0, 0, 800, 500]);
+set(h, 'Position', [0, 0, 600, 300]);
