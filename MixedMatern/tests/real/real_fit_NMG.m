@@ -39,8 +39,8 @@ ub = [10, 10, 10, 10, 5, 10, 10, 10];
 beta_init = rand_search_NMG(negloglik1, 100, lb, ub, true, true);
 
 % to avoid identifiability problem, set a1>0
-lb = [0 -Inf -Inf -Inf 1 0 0 0];
-ub = [Inf Inf Inf Inf 5 Inf Inf Inf];
+lb = [0 -10 -10 -10 1 0 0 0];
+ub = [10 10 10 10 5 Inf Inf Inf];
 
 % fit the model
 [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], true);
