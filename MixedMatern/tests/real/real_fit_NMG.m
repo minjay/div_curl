@@ -34,9 +34,7 @@ end
 negloglik1 = @(beta_all) negloglik_NMG(beta_all, r, samples,...
     h10, h20, h30, h120, h130, h230, h330);
 
-lb = [0, -10, -10, -10, 1, 10, 0, 0];
-ub = [10, 10, 10, 10, 5, 10, 10, 10];
-beta_init = rand_search_NMG(negloglik1, 100, lb, ub, true, true);
+beta_init = [0.1 -0.1 0.1 -0.1 2 20 0.01 0.01];
 
 % to avoid identifiability problem, set a1>0
 lb = [0 -10 -10 -10 1 0 0 0];
