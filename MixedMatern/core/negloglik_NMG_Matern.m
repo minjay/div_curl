@@ -1,4 +1,4 @@
-function f_value = negloglik_NMG_Matern(beta_all, r, samples, h0_cell)
+function f_value = negloglik_NMG_Matern(beta_all, r, samples, h0_cell, cov_mat_Matern, a, tau1, tau2)
 
 n = size(r, 1);
 p = 2;
@@ -10,17 +10,9 @@ a2 = beta_all(2);
 b1 = beta_all(3);
 b2 = beta_all(4);
 nu = beta_all(5);
-a = beta_all(6);
-sigma1 = beta_all(7);
-sigma2 = beta_all(8);
-w1 = beta_all(9);
-w2 = beta_all(10);
-tau1 = beta_all(11);
-tau2 = beta_all(12);
 
 % get cov mat
-cov_mat = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+...
-    get_cov_Matern_pars(r, sigma1, sigma2, 0, w1, w2, a)+...
+cov_mat = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+cov_mat_Matern+...
     diag(kron(ones(1, n), [tau1^2, tau2^2]));
     
 % negative log-likelihood function
