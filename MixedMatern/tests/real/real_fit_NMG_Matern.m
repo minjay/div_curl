@@ -30,8 +30,8 @@ beta_init = [0 0 0 0 2 a sigma1 sigma2 nu1 nu2 tau1 tau2];
 negloglik1(beta_init)
 
 % to avoid identifiability problem, set a1>0
-lb = [0   -Inf -Inf -Inf 1 0   0   0   1 1 0   0];
-ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
+lb = [0   -Inf -Inf -Inf 1 a sigma1 sigma2 nu1 nu2 tau1 tau2];
+ub = [Inf Inf  Inf  Inf  5 a sigma1 sigma2 nu1 nu2 tau1 tau2];
 
 % fit the model
 [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], true);
