@@ -9,7 +9,7 @@ M_nu_minus_2 = fun_M(h_sqrt, nu-2);
 M_nu_minus_1 = fun_M(h_sqrt, nu-1);
 
 % h_vec = [h1 h2 h3 h12 h13 h23 h33];
-% mutiply a^2 to update since for h0_vec, a=1
+% multiply a^2 to update since for h0_vec, a=1
 h_vec = a^2*h0_vec;
 h1 = h_vec(1);
 h2 = h_vec(2);
