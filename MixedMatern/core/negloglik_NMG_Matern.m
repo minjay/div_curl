@@ -1,5 +1,4 @@
-function f_value = negloglik_NMG_Matern(beta_all, r, samples, h10,...
-    h20, h30, h120, h130, h230, h330)
+function f_value = negloglik_NMG_Matern(beta_all, r, samples, h0_cell)
 
 n = size(r, 1);
 p = 2;
@@ -20,8 +19,7 @@ tau1 = beta_all(11);
 tau2 = beta_all(12);
 
 % get cov mat
-cov_mat = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h10, h20,...
-    h30, h120, h130, h230, h330)+...
+cov_mat = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+...
     get_cov_Matern_pars(r, sigma1, sigma2, 0, w1, w2, a)+...
     diag(kron(ones(1, n), [tau1^2, tau2^2]));
     

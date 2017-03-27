@@ -5,42 +5,33 @@ addpath(genpath('/home/minjay/div_curl'))
 load('wind.mat')
 
 % initial computation
-r = zeros(n);
-h10 = zeros(n);
-h20 = zeros(n);
-h30 = zeros(n);
-h120 = zeros(n);
-h130 = zeros(n);
-h230 = zeros(n);
-h330 = zeros(n);
-% column first
-for j = 1:n
-    for i = 1:j
-        s = [x(i); y(i); z(i)];
-        t = [x(j); y(j); z(j)];
-        r(i, j) = norm(s-t);
-        [h10_tmp, h20_tmp, h30_tmp, h120_tmp, h130_tmp, h230_tmp, h330_tmp] = h_deriv(1, theta(i), theta(j), phi(i)-phi(j));
-        h10(i, j) = h10_tmp;
-        h20(i, j) = h20_tmp;
-        h30(i, j) = h30_tmp;
-        h120(i, j) = h120_tmp;
-        h130(i, j) = h130_tmp;
-        h230(i, j) = h230_tmp;
-        h330(i, j) = h330_tmp;
-    end
-end
+[r, h0_cell] = init_comp_NMG(n, theta, phi, x, y, z);
 
 % negative log-likelihood function
-negloglik1 = @(beta_all) negloglik_NMG_Matern(beta_all, r, samples,...
-    h10, h20, h30, h120, h130, h230, h330);
+negloglik1 = @(beta_all) negloglik_NMG_Matern(beta_all, r, samples, h0_cell);
 
-lb = [0 -10 -10 -10 1 10 0 0 1 1 0 0];
-ub = [10 10 10 10 5 10 10 10 5 5 10 10];
-beta_init = rand_search_NMG(negloglik1, 10, lb, ub, true, true);
+param_BM = [0.21810846 0.203180249 0.058196367 1.23929461 1.1322247 0.184217146 0.156812964 -0.07977680];
+beta_all(1:2) = param_BM(6:7);
+beta_all(3) = param_BM(8);
+beta_all(4:5) = param_BM(4:5);
+beta_all(6) = param_BM(3);
+beta_all(7:8) = param_BM(1:2);
+sigma1 = sqrt(beta_all(1));
+sigma2 = sqrt(beta_all(2));
+rho12 = beta_all(3);
+nu1 = beta_all(4);
+nu2 = beta_all(5);
+a = 1/beta_all(6);
+tau1 = beta_all(7);
+tau2 = beta_all(8);
+
+% [a1 a2 b1 b2 nu a sigma1 sigma2 w1 w2 tau1 tau2]
+beta_init = [0 0 0 0 2 a sigma1 sigma2 nu1 nu2 tau1 tau2];
+negloglik1(beta_init)
 
 % to avoid identifiability problem, set a1>0
-lb = [0 -Inf -Inf -Inf 1 0 0 0 1 1 0 0];
-ub = [Inf Inf Inf Inf 5 Inf Inf Inf 5 5 Inf Inf];
+lb = [0   -Inf -Inf -Inf 1 0   0   0   1 1 0   0];
+ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 % fit the model
 [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], true);
