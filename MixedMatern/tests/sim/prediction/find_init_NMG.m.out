@@ -1,0 +1,266 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+
+	Academic License
+
+>> >> Starting parallel pool (parpool) using the 'local' profile ... connected to 8 workers.
+
+ans = 
+
+ Pool with properties: 
+
+            Connected: true
+           NumWorkers: 8
+              Cluster: local
+        AttachedFiles: {}
+          IdleTimeout: 30 minute(s) (30 minutes remaining)
+          SpmdEnabled: true
+
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Current estimate of beta is [0 0 0 0 3]
+
+ans =
+
+ -413.8984
+
+>> >> >> >> >> >> >> The initial guess of beta is [0 0 0 0 3]
+Your initial point x0 is not between bounds lb and ub; FMINCON
+shifted x0 to strictly satisfy the bounds.
+
+Current estimate of beta is [0.99 0 0 0 3]
+Current estimate of beta is [0.99 0 0 0 3]
+Current estimate of beta is [0.99 0 0 0 3]
+Current estimate of beta is [0.99 0 0 0 3]
+Current estimate of beta is [0.99 0 0 0 3]
+Current estimate of beta is [0.99 0 0 0 3]
+                                            First-order      Norm of
+ Iter F-count            f(x)  Feasibility   optimality         step
+    0       6   -2.951971e+02    0.000e+00    1.841e+02
+Current estimate of beta is [0.64867 0.103721 3.789835 -3.482029 4.99]
+Current estimate of beta is [0.819335 0.051861 1.894917 -1.741015 3.995]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+Current estimate of beta is [0.904667 0.02593 0.947459 -0.870507 3.4975]
+    1      14   -3.034931e+02    0.000e+00    8.897e+01    1.382e+00
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+Current estimate of beta is [0.525309 -0.088466 0.16546 -0.046026 3.826086]
+    2      20   -4.512052e+02    0.000e+00    3.499e+01    1.248e+00
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+Current estimate of beta is [0.002627 -0.136409 -0.225822 0.467254 3.734166]
+    3      26   -4.578806e+02    0.000e+00    1.332e+02    8.370e-01
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+Current estimate of beta is [0.00582 -0.323282 0.154106 0.115431 3.873551]
+    4      32   -4.947109e+02    0.000e+00    8.877e+01    5.679e-01
+Current estimate of beta is [0.160074 -0.165636 0.318754 -0.049402 3.880635]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+Current estimate of beta is [0.082947 -0.244459 0.23643 0.033014 3.877093]
+    5      39   -4.998268e+02    0.000e+00    4.659e+01    1.604e-01
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867965]
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867965]
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867966]
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867965]
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867965]
+Current estimate of beta is [0.044581 -0.192641 0.226966 0.066672 3.867965]
+    6      45   -5.032648e+02    0.000e+00    1.493e+01    7.391e-02
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+Current estimate of beta is [0.026532 -0.165226 0.193409 0.100816 3.872646]
+    7      51   -5.035721e+02    0.000e+00    1.304e+01    5.823e-02
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+Current estimate of beta is [0.028483 -0.17774 0.207756 0.084627 3.885105]
+    8      57   -5.037615e+02    0.000e+00    3.980e+00    2.799e-02
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+Current estimate of beta is [0.032773 -0.175259 0.204696 0.08384 3.899662]
+    9      63   -5.038146e+02    0.000e+00    3.876e+00    1.570e-02
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+Current estimate of beta is [0.035831 -0.162643 0.193374 0.077523 4.00906]
+   10      69   -5.041722e+02    0.000e+00    9.328e+00    1.109e-01
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+Current estimate of beta is [0.033356 -0.140451 0.159868 0.081484 4.311942]
+   11      75   -5.048984e+02    0.000e+00    1.544e+01    3.056e-01
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+Current estimate of beta is [0.009956 -0.10077 0.150547 0.068784 4.710165]
+   12      81   -5.052031e+02    0.000e+00    2.954e+01    4.012e-01
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+Current estimate of beta is [0.019 -0.118465 0.136322 0.079761 4.666511]
+   13      87   -5.054098e+02    0.000e+00    1.011e+01    5.122e-02
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+Current estimate of beta is [0.019427 -0.112027 0.136416 0.077501 4.693578]
+   14      93   -5.054489e+02    0.000e+00    2.149e+00    2.792e-02
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+Current estimate of beta is [0.017672 -0.108453 0.133912 0.075785 4.73383]
+   15      99   -5.054771e+02    0.000e+00    9.934e-01    4.056e-02
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+Current estimate of beta is [0.017766 -0.107874 0.13241 0.074821 4.741791]
+   16     105   -5.054810e+02    0.000e+00    6.239e-01    8.180e-03
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+Current estimate of beta is [0.017817 -0.107045 0.130007 0.074095 4.750592]
+   17     111   -5.054846e+02    0.000e+00    1.937e-01    9.189e-03
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+Current estimate of beta is [0.0151 -0.100412 0.122535 0.070303 4.840637]
+   18     117   -5.055218e+02    0.000e+00    7.711e-01    9.072e-02
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+Current estimate of beta is [0.014704 -0.097753 0.119365 0.069215 4.877539]
+   19     123   -5.055301e+02    0.000e+00    3.276e-01    3.715e-02
+Current estimate of beta is [0.01501 -0.098405 0.120266 0.064766 4.891331]
+Current estimate of beta is [0.014857 -0.098079 0.119815 0.06699 4.884435]
+Current estimate of beta is [0.01478 -0.097916 0.11959 0.068103 4.880987]
+Current estimate of beta is [0.014742 -0.097835 0.119477 0.068659 4.879263]
+Current estimate of beta is [0.015404 -0.098798 0.120829 0.065274 4.887291]
+Current estimate of beta is [0.015053 -0.098835 0.12075 0.065751 4.882403]
+Current estimate of beta is [0.014877 -0.098854 0.120711 0.065991 4.879949]
+Current estimate of beta is [0.014787 -0.098863 0.120691 0.066112 4.878702]
+Current estimate of beta is [0.014739 -0.098869 0.12068 0.066178 4.878028]
+Current estimate of beta is [0.014704 -0.098848 0.12062 0.066817 4.877544]
+Current estimate of beta is [0.014704 -0.098518 0.119858 0.068073 4.877542]
+Current estimate of beta is [0.014704 -0.098332 0.119432 0.068776 4.87754]
+Current estimate of beta is [0.014704 -0.098071 0.119358 0.069035 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+Current estimate of beta is [0.014704 -0.097912 0.119362 0.069125 4.877539]
+   20     142   -5.055302e+02    0.000e+00    1.599e-01    1.825e-04
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+Current estimate of beta is [0.014643 -0.097436 0.118895 0.06884 4.883273]
+   21     148   -5.055312e+02    0.000e+00    2.002e-02    5.780e-03
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+Current estimate of beta is [0.013469 -0.094025 0.114437 0.067103 4.930458]
+   22     154   -5.055379e+02    0.000e+00    1.445e+00    4.756e-02
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+Current estimate of beta is [0.013704 -0.093159 0.113808 0.066388 4.9436]
+   23     160   -5.055393e+02    0.000e+00    1.192e-01    1.321e-02
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+Current estimate of beta is [0.013642 -0.093047 0.113563 0.066406 4.945563]
+   24     166   -5.055395e+02    0.000e+00    2.527e-02    1.982e-03
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+Current estimate of beta is [0.01364 -0.093032 0.113542 0.066421 4.945903]
+   25     172   -5.055395e+02    0.000e+00    4.998e-03    3.407e-04
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+   26     178   -5.055395e+02    0.000e+00    6.141e-03    5.788e-05
+Current estimate of beta is [0.013642 -0.093036 0.113541 0.06642 4.945803]
+Current estimate of beta is [0.013643 -0.093035 0.113541 0.06642 4.945824]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.945835]
+Current estimate of beta is [0.013643 -0.093034 0.11354 0.06642 4.94584]
+Current estimate of beta is [0.013642 -0.093033 0.113538 0.066419 4.945844]
+Current estimate of beta is [0.013642 -0.093033 0.113538 0.066419 4.945845]
+Current estimate of beta is [0.013643 -0.093033 0.113538 0.066419 4.945845]
+Current estimate of beta is [0.013643 -0.093033 0.113538 0.066419 4.945845]
+Current estimate of beta is [0.013643 -0.093033 0.113538 0.066419 4.945845]
+Current estimate of beta is [0.013643 -0.093033 0.113538 0.066419 4.945845]
+Current estimate of beta is [0.013643 -0.093033 0.113539 0.06642 4.945845]
+
+Local minimum possible. Constraints satisfied.
+
+fmincon stopped because the size of the current step is less than
+the selected value of the step size tolerance and constraints are 
+satisfied to within the default value of the constraint tolerance.
+
+
+
+The MLE of beta is [0.013643 -0.093034 0.11354 0.06642 4.945845]
+>> >> Parallel pool using the 'local' profile is shutting down.
+>> 
