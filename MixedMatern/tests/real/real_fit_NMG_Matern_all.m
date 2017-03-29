@@ -26,11 +26,12 @@ tau2 = beta_all(8);
 negloglik1 = @(beta_all) negloglik_NMG_Matern_all(beta_all, r, samples, h0_cell);
 
 % [a1 a2 b1 b2 nu a sigma1 sigma2 w1 w2 tau1 tau2]
-beta_init = [0.006925 -0.003031 0.000483 0.005205 3.305484 a sigma1 sigma2 nu1 nu2 tau1 tau2];
+%beta_init = [0.006925 -0.003031 0.000483 0.005205 3.305484 a sigma1 sigma2 nu1 nu2 tau1 tau2];
+beta_init = [0.012807 -0.003708 0.002123 0.009214 3.027168 16.271895 0.269389 0.33864 1.000028 1.000033 0.22439 0.203561];
 negloglik1(beta_init)
 
 % to avoid identifiability problem, set a1>0
-lb = [0   -Inf -Inf -Inf 1 0   0   0   1 1 0   0];
+lb = [0   -Inf -Inf -Inf 1 0   0   0   0 0 0   0];
 ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 % fit the model
