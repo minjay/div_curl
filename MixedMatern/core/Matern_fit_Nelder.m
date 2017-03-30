@@ -22,7 +22,7 @@ function [beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init)
 
 disp(['The initial guess of beta is ', mat2str(round(beta_init*1e6)/1e6)])
 
-options = optimoptions(@fminsearch, 'Display', 'iter');
+options = optimset('Display','iter');
 
 [beta_hat, f_min] = fminsearch(negloglik1, beta_init, options);
 
