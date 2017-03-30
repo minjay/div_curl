@@ -1,4 +1,4 @@
-function [beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init, lb, ub, mycon, paral)
+function [beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init)
 %MATERN_FIT   Fits the Mixed Matern model by the MLE.
 %
 %   [BETA_HAT, F_MIN] = MATERN_FIT(NEGLOGLIK1, BETA_INIT, LB, UB, MYCON,
@@ -25,17 +25,7 @@ disp(['The initial guess of beta is ', mat2str(round(beta_init*1e6)/1e6)])
 % use interior-point algorithm for large-scale problems
 % nu can not be too large
 
-if ~paral
-    options = optimoptions(@fmincon, 'Algorithm', 'interior-point',...
-        'Hessian', 'lbfgs', 'Display', 'iter', 'TolX', 1e-6, 'MaxFunEvals', 1e4);
-else
-    options = optimoptions(@fmincon, 'Algorithm', 'interior-point',...
-        'Hessian', 'lbfgs', 'Display', 'iter', 'TolX', 1e-6,...
-        'UseParallel', 'always', 'MaxFunEvals', 1e4);
-end
-
-[beta_hat, f_min] = fmincon(negloglik1, beta_init, [], [], [], [], lb, ub,...
-    mycon, options);
+[beta_hat, f_min] = fminsearch(negloglik1, beta_init);
 
 disp(['The MLE of beta is ', mat2str(round(beta_hat*1e6)/1e6)])
 

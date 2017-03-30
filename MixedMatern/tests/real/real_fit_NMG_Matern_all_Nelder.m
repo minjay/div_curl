@@ -1,5 +1,4 @@
 % run on server
-parpool(8)
 addpath(genpath('/home/minjay/div_curl'))
 
 load('wind.mat')
@@ -35,6 +34,4 @@ lb = [0   -Inf -Inf -Inf 1 0   0   0   0 0 0   0];
 ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 % fit the model
-[beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], true);
-
-delete(gcp)
+[beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init);
