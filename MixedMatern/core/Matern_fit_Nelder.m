@@ -22,10 +22,9 @@ function [beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init)
 
 disp(['The initial guess of beta is ', mat2str(round(beta_init*1e6)/1e6)])
 
-% use interior-point algorithm for large-scale problems
-% nu can not be too large
+options = optimoptions(@fminsearch, 'Display', 'iter');
 
-[beta_hat, f_min] = fminsearch(negloglik1, beta_init);
+[beta_hat, f_min] = fminsearch(negloglik1, beta_init, options);
 
 disp(['The MLE of beta is ', mat2str(round(beta_hat*1e6)/1e6)])
 
