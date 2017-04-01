@@ -1,21 +1,22 @@
-% cokriging 20 times
+% cokriging 20 times, NMG
 clear
 
 % run on server
 parpool(12)
 addpath(genpath('/home/minjay/div_curl'))
 
-savefile = 'pred_err.mat';
+savefile = 'pred_err_NMG.mat';
 
 load('wind.mat')
 
 % initial computation
-[h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
+[r, h0_cell] = init_comp_NMG(n, theta, phi, x, y, z);
 
-beta_init = [0.029113 0.054503 0.281047 1.757812 2.034312 9.47189 0.210496 0.196141];
+beta_init = [0.016283 -0.004629 0.002649 0.011662 2.867271 14.523555 0.270156 0.343079 0.720569 0.830202 0.212515 0.194964];
 
-lb = [0 0 -1 1 1 0 0 0];
-ub = [Inf Inf 1 5 5 Inf Inf Inf];
+% to avoid identifiability problem, set a1>0
+lb = [0   -Inf -Inf -Inf 1 0   0   0   1 1 0   0];
+ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 T = 108;
 n_pred = n/2;
@@ -59,8 +60,6 @@ for i = 1:B
     rec_idx_pred(i, :) = setdiff(1:p*n, rec_idx_est(i, :));
 end
 
-save('pred_loc.mat', 'rec_pred_loc', 'rec_est_loc', 'rec_idx_est', 'rec_idx_pred')
-
 parfor rep = 1:B
     
     % get pred and est locations
@@ -71,28 +70,33 @@ parfor rep = 1:B
     idx_pred = rec_idx_pred(rep, :);
 
     % compute the subsets
-    h_mat_sub = h_mat(est_loc, est_loc);
+    h0_cell_sub = h0_cell(est_loc, est_loc);
     r_sub = r(est_loc, est_loc);
-    P_cell_sub = P_cell(est_loc);
-    Q_cell_sub = Q_cell(est_loc);
-    A_cell_sub = A_cell(est_loc);
     samples_sub = samples(:, idx_est);
 
     % negative log-likelihood function
-    negloglik1 = @(beta_all) negloglik(beta_all, h_mat_sub, r_sub, P_cell_sub, Q_cell_sub, A_cell_sub, samples_sub);
+    negloglik1 = @(beta_all) negloglik_NMG_Matern_all(beta_all, r_sub, samples_sub, h0_cell_sub);
 
     % fit the model
-    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
+    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], false);
 
-    beta = beta_hat(1:6);
-    tau1 = beta_hat(7);
-    tau2 = beta_hat(8);
-
-    [coef, bessel] = get_coef_bessel(beta, r);
+    a1 = beta_hat(1);
+    a2 = beta_hat(2);
+    b1 = beta_hat(3);
+    b2 = beta_hat(4);
+    nu = beta_hat(5);
+    a = beta_hat(6);
+    sigma1 = beta_hat(7);
+    sigma2 = beta_hat(8);
+    w1 = beta_hat(9);
+    w2 = beta_hat(10);
+    tau1 = beta_hat(11);
+    tau2 = beta_hat(12);
 
     % get cov mat
-    cov_mat = get_cov(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix,...
-        beta, coef, bessel)+diag(kron(ones(1, n), [tau1^2, tau2^2]));
+    cov_mat = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+...
+        get_cov_Matern_pars(r, sigma1, sigma2, 0, w1, w2, a)+...
+        diag(kron(ones(1, n), [tau1^2, tau2^2]));
 
     % follow the cokriging formula
     Sigma00 = cov_mat(idx_est, idx_est);
