@@ -37,6 +37,7 @@ cov_v_data = cov_mat_data(2:p:end, 2:p:end);
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
+[r, h0_cell] = init_comp_NMG(n, theta, phi, x, y, z);
 
 idx_upper = find(triu(ones(n)));
 r_upper = r(idx_upper);
@@ -99,6 +100,29 @@ cov_uv_BM = cov_mat_BM(1:p:end, 2:p:end);
 cov_u_upper_BM = cov_u_BM(idx_upper);
 cov_v_upper_BM = cov_v_BM(idx_upper);
 
+% get cov mat for NMG
+param_NMG = [0.016283 -0.004629 0.002649 0.011662 2.867271 14.523555 0.270156 0.343079 0.720569 0.830202 0.212515 0.194964];
+a1 = param_NMG(1);
+a2 = param_NMG(2);
+b1 = param_NMG(3);
+b2 = param_NMG(4);
+nu = param_NMG(5);
+a = param_NMG(6);
+sigma1 = param_NMG(7);
+sigma2 = param_NMG(8);
+w1 = param_NMG(9);
+w2 = param_NMG(10);
+tau1 = param_NMG(11);
+tau2 = param_NMG(12);
+cov_mat_NMG = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+...
+    get_cov_Matern_pars(r, sigma1, sigma2, 0, w1, w2, a)+...
+    diag(kron(ones(1, n), [tau1^2, tau2^2]));
+cov_u_NMG = cov_mat_NMG(1:p:end, 1:p:end);
+cov_v_NMG = cov_mat_NMG(2:p:end, 2:p:end);
+cov_uv_NMG = cov_mat_NMG(1:p:end, 2:p:end);
+cov_vu_NMG = cov_mat_NMG(2:p:end, 1:p:end);
+cov_u_upper_NMG = cov_u_NMG(idx_upper);
+cov_v_upper_NMG = cov_v_NMG(idx_upper);
 
 h = figure;
 
@@ -110,20 +134,22 @@ r_max_index = find(r_upper_sort<=X_MED(end), 1, 'last');
 plot(X_MED, Y_MED, 'bo')
 lh = boxplot_curve(r_upper, cov_u_upper, nb, 'r', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_u_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
+lh2 = boxplot_curve(r_upper, cov_u_upper_NMG, nb, 'm', 0.5);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of U Residual Field')
-legend([lh ph], {'TMM', 'PARS-BM'})
+legend([lh ph lh2], {'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,2)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_v_data_upper);
 plot(X_MED, Y_MED, 'bo');
 lh = boxplot_curve(r_upper, cov_v_upper, nb, 'r', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_v_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
+lh2 = boxplot_curve(r_upper, cov_v_upper_NMG, nb, 'm', 0.5);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of V Residual Field')
-legend([lh ph], {'TMM', 'PARS-BM'})
+legend([lh ph lh2], {'TMM', 'PARS-BM' 'NBG'})
 
 lat = (pi/2-theta)/pi*180;
 lon = phi/pi*180;
@@ -133,6 +159,7 @@ corr_mat_data = corr(samples);
 corr_uv_data = corr_mat_data(1:p:end, 2:p:end);
 
 corr_uv_BM = diag(1./sqrt(diag(cov_u_BM)))*cov_uv_BM*diag(1./sqrt(diag(cov_v_BM)));
+corr_uv_NMG = diag(1./sqrt(diag(cov_u_NMG)))*cov_uv_NMG*diag(1./sqrt(diag(cov_v_NMG)));
 
 subplot(2,2,3)
 plot(lat, diag(corr_uv_data), 'bo')
@@ -143,11 +170,11 @@ axis([min(lat) max(lat) -1 1])
 hline = refline(0, 0);
 set(hline,'Color','r')
 set(hline,'LineWidth', 1.5)
-set(hline,'LineStyle', '--')
 ph = plot(lat, diag(corr_uv_BM), 'c-.', 'LineWidth', 1.5);
+ph2 = plot(lat, diag(corr_uv_NMG), 'm--', 'LineWidth', 1.5);
 xlabel('Latitude (degree)')
 title('Cross-correlation of U & V Residual Fields')
-legend([h_emp hline ph], {'Empirical','TMM', 'PARS-BM'})
+legend([h_emp hline ph ph2], {'Empirical','TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,4)
 plot(lon, diag(corr_uv_data), 'bo')
@@ -160,8 +187,8 @@ axis([min(lon) max(lon) -1 1])
 hline = refline(0, 0);
 set(hline,'Color','r')
 set(hline,'LineWidth', 1.5)
-set(hline,'LineStyle', '--')
 ph = plot(sorted_lon, diag(corr_uv_BM(index, index)), 'c-.', 'LineWidth', 1.5);
+ph2 = plot(sorted_lon, diag(corr_uv_NMG(index, index)), 'm.');
 xlabel('Longitude (degree)')
 title('Cross-correlation of U & V Residual Fields')
-legend([h_emp hline ph], {'Empirical','TMM', 'PARS-BM'})
+legend([h_emp hline ph ph2], {'Empirical','TMM', 'PARS-BM', 'NBG'})
