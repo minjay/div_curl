@@ -4,3 +4,5 @@ data/
 results/samples_multi_matern.mat
 
 results/MLE_covariate_good_init.mat
+
+MixedMatern/tests/real/samples_NMG.mat
