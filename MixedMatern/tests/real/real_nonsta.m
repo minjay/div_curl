@@ -10,6 +10,7 @@ cov_v_data = cov_mat_data(2:p:end, 2:p:end);
 
 % initial computation
 [h_mat, r, P_cell, Q_cell, A_cell] = init_comp(x, y, z, n, theta, phi);
+[r, h0_cell] = init_comp_NMG(n, theta, phi, x, y, z);
 
 % specify parameters
 beta_all = [0.029113 0.054503 0.281047 1.757812 2.034312 9.47189 0.210496 0.196141];
@@ -57,8 +58,29 @@ cov_mat_BM = get_cov_Matern_pars(r, sigma1, sigma2, rho12, nu1, nu2, a)+...
 cov_u_BM = cov_mat_BM(1:p:end, 1:p:end);
 cov_v_BM = cov_mat_BM(2:p:end, 2:p:end);
 
+% get cov mat for NMG
+param_NMG = [0.016283 -0.004629 0.002649 0.011662 2.867271 14.523555 0.270156 0.343079 0.720569 0.830202 0.212515 0.194964];
+a1 = param_NMG(1);
+a2 = param_NMG(2);
+b1 = param_NMG(3);
+b2 = param_NMG(4);
+nu = param_NMG(5);
+a = param_NMG(6);
+sigma1 = param_NMG(7);
+sigma2 = param_NMG(8);
+w1 = param_NMG(9);
+w2 = param_NMG(10);
+tau1 = param_NMG(11);
+tau2 = param_NMG(12);
+cov_mat_NMG = get_cov_NMG(r, a1, a2, b1, b2, nu, a, h0_cell)+...
+    get_cov_Matern_pars(r, sigma1, sigma2, 0, w1, w2, a)+...
+    diag(kron(ones(1, n), [tau1^2, tau2^2]));
+cov_u_NMG = cov_mat_NMG(1:p:end, 1:p:end);
+cov_v_NMG = cov_mat_NMG(2:p:end, 2:p:end);
+
 lat = (pi/2-theta)/pi*180;
 lon = phi/pi*180;
+[lon_sorted, index] = sort(lon);
 
 subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.075 0.05], [0.05 0.02]);
 
@@ -69,47 +91,53 @@ plot(lat, diag(cov_u_data), 'bo')
 hold on
 y_smooth = smooth(lat, diag(cov_u_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
-ph1 = plot(lat, diag(cov_u), 'r--', 'LineWidth', 1.5);
+ph1 = plot(lat, diag(cov_u), 'r', 'LineWidth', 1.5);
 ph2 = plot(lat, diag(cov_u_BM), 'c-.', 'LineWidth', 1.5);
+ph3 = plot(lat, diag(cov_u_NMG), 'm--', 'LineWidth', 1.5);
 axis tight
 title('Variance of U Residual Field')
 ylim([0 1])
 xlabel('Latitude')
-legend([h_emp ph1 ph2], {'Empirical', 'TMM', 'PARS-BM'})
+legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 2)
 plot(lon, diag(cov_u_data), 'bo')
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_u_data(index, index)), 0.2, 'loess');
-plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5)
-[lon_sorted, index] = sort(lon);
-plot(lon_sorted, diag(cov_u(index, index)), 'r--', 'LineWidth', 1.5)
-plot(lon_sorted, diag(cov_u_BM(index, index)), 'c-.', 'LineWidth', 1.5)
+h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
+ph1 = plot(lon_sorted, diag(cov_u(index, index)), 'r', 'LineWidth', 1.5);
+ph2 = plot(lon_sorted, diag(cov_u_BM(index, index)), 'c-.', 'LineWidth', 1.5);
+ph3 = plot(lon_sorted, diag(cov_u_NMG(index, index)), 'm.');
 axis tight
 title('Variance of U Residual Field')
 ylim([0 1])
 xlabel('Longitude')
+legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 3)
 plot(lat, diag(cov_v_data), 'bo')
 hold on
 y_smooth = smooth(lat, diag(cov_v_data), 0.2, 'loess');
-plot(lat, y_smooth, 'g', 'LineWidth', 1.5)
-plot(lat, diag(cov_v), 'r--', 'LineWidth', 1.5)
-plot(lat, diag(cov_v_BM), 'c-.', 'LineWidth', 1.5)
+h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
+ph1 = plot(lat, diag(cov_v), 'r', 'LineWidth', 1.5);
+ph2 = plot(lat, diag(cov_v_BM), 'c-.', 'LineWidth', 1.5);
+ph3 = plot(lat, diag(cov_v_NMG), 'm--', 'LineWidth', 1.5);
 axis tight
 title('Variance of V Residual Field')
 ylim([0 1])
 xlabel('Latitude')
+legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 4)
 plot(lon, diag(cov_v_data), 'bo')
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_v_data(index, index)), 0.2, 'loess');
-plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5)
-plot(lon_sorted, diag(cov_v(index, index)), 'r--', 'LineWidth', 1.5)
-plot(lon_sorted, diag(cov_v_BM(index, index)), 'c-.', 'LineWidth', 1.5)
+h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
+ph1 = plot(lon_sorted, diag(cov_v(index, index)), 'r', 'LineWidth', 1.5);
+ph2 = plot(lon_sorted, diag(cov_v_BM(index, index)), 'c-.', 'LineWidth', 1.5);
+ph3 = plot(lon_sorted, diag(cov_v_NMG(index, index)), 'm.');
 axis tight
 title('Variance of V Residual Field')
 ylim([0 1])
 xlabel('Longitude')
+legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
