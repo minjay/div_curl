@@ -15,7 +15,7 @@ load('wind.mat')
 beta_init = [0.016283 -0.004629 0.002649 0.011662 2.867271 14.523555 0.270156 0.343079 0.720569 0.830202 0.212515 0.194964];
 
 % to avoid identifiability problem, set a1>0
-lb = [0   -Inf -Inf -Inf 1 0   0   0   1 1 0   0];
+lb = [0   -Inf -Inf -Inf 1 0   0   0   0 0 0   0];
 ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 T = 108;
