@@ -124,6 +124,7 @@ cov_vu_NMG = cov_mat_NMG(2:p:end, 1:p:end);
 cov_u_upper_NMG = cov_u_NMG(idx_upper);
 cov_v_upper_NMG = cov_v_NMG(idx_upper);
 
+width = 75;
 h = figure;
 
 subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.075 0.05], [0.05 0.01]);
@@ -134,7 +135,7 @@ r_max_index = find(r_upper_sort<=X_MED(end), 1, 'last');
 plot(X_MED, Y_MED, 'bo')
 lh = boxplot_curve(r_upper, cov_u_upper, nb, 'r', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_u_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
-lh2 = boxplot_curve(r_upper, cov_u_upper_NMG, nb, 'm', 0.5);
+lh2 = boxplot_curve2(r_upper, cov_u_upper_NMG, nb, 'm', 0.5, width);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of U Residual Field')
@@ -145,7 +146,7 @@ subplot(2,2,2)
 plot(X_MED, Y_MED, 'bo');
 lh = boxplot_curve(r_upper, cov_v_upper, nb, 'r', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_v_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
-lh2 = boxplot_curve(r_upper, cov_v_upper_NMG, nb, 'm', 0.5);
+lh2 = boxplot_curve2(r_upper, cov_v_upper_NMG, nb, 'm', 0.5, width);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of V Residual Field')
