@@ -28,7 +28,7 @@ ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 rec_beta_hat = zeros(B, 12);
 
-parfor rep = 141:200
+parfor rep = 151:180
     
     samples = samples_all_cell{rep};
     
@@ -36,7 +36,7 @@ parfor rep = 141:200
     negloglik1 = @(beta_all) negloglik_NMG_Matern_all(beta_all, r, samples, h0_cell);
     
     % fit the model
-    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], false);
+    [beta_hat, f_min] = Matern_fit_Nelder(negloglik1, beta_init);
     rec_beta_hat(rep, :) = beta_hat;
     
 end
