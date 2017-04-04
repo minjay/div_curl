@@ -1,15 +1,15 @@
 % compute the standard errors by bootstrapping
-% on Hilbert
+% on Hilbert 2
 clear
 
 % run on server
-parpool(16)
+parpool(8)
 addpath(genpath('/home/minjay/div_curl'))
 
 load('wind.mat')
 load('samples_NMG.mat')
 
-savefile = 'boot_NMG1.mat';
+savefile = 'boot_NMG11.mat';
 
 T = 108;
 p = 2;
@@ -28,7 +28,7 @@ ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 rec_beta_hat = zeros(B, 12);
 
-parfor rep = 1:50
+parfor rep = 181:200
     
     samples = samples_all_cell{rep};
     
