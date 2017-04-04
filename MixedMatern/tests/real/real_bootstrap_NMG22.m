@@ -1,5 +1,5 @@
 % compute the standard errors by bootstrapping
-% on Hannan
+% on Hannan 2
 clear
 
 % run on server
@@ -9,7 +9,7 @@ addpath(genpath('/home/minjay/div_curl'))
 load('wind.mat')
 load('samples_NMG.mat')
 
-savefile = 'boot_NMG2.mat';
+savefile = 'boot_NMG22.mat';
 
 T = 108;
 p = 2;
@@ -28,7 +28,7 @@ ub = [Inf Inf  Inf  Inf  5 Inf Inf Inf 5 5 Inf Inf];
 
 rec_beta_hat = zeros(B, 12);
 
-parfor rep = 51:100
+parfor rep = 101:150
     
     samples = samples_all_cell{rep};
     
