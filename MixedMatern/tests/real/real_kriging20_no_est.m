@@ -1,11 +1,9 @@
 % cokriging 20 times
 clear
 
-% run on server
-parpool(12)
 addpath(genpath('/home/minjay/div_curl'))
 
-savefile = 'pred_err.mat';
+savefile = 'pred_err_no_est.mat';
 
 load('wind.mat')
 
@@ -59,9 +57,7 @@ for i = 1:B
     rec_idx_pred(i, :) = setdiff(1:p*n, rec_idx_est(i, :));
 end
 
-save('pred_loc.mat', 'rec_pred_loc', 'rec_est_loc', 'rec_idx_est', 'rec_idx_pred')
-
-parfor rep = 1:B
+for rep = 1:B
     
     % get pred and est locations
     pred_loc = rec_pred_loc(rep, :);
@@ -70,19 +66,7 @@ parfor rep = 1:B
     idx_est = rec_idx_est(rep, :);
     idx_pred = rec_idx_pred(rep, :);
 
-    % compute the subsets
-    h_mat_sub = h_mat(est_loc, est_loc);
-    r_sub = r(est_loc, est_loc);
-    P_cell_sub = P_cell(est_loc);
-    Q_cell_sub = Q_cell(est_loc);
-    A_cell_sub = A_cell(est_loc);
-    samples_sub = samples(:, idx_est);
-
-    % negative log-likelihood function
-    negloglik1 = @(beta_all) negloglik(beta_all, h_mat_sub, r_sub, P_cell_sub, Q_cell_sub, A_cell_sub, samples_sub);
-
-    % fit the model
-    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon, false);
+    beta_hat = beta_init;
 
     beta = beta_hat(1:6);
     tau1 = beta_hat(7);
@@ -143,6 +127,3 @@ parfor rep = 1:B
 end
 
 save(savefile, 'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v', 'LogS_u', 'LogS_v', 'CRPS_u', 'CRPS_v');
-
-% run on server
-delete(gcp)

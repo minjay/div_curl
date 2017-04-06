@@ -1,11 +1,9 @@
 % cokriging 20 times, NMG
 clear
 
-% run on server
-parpool(12)
 addpath(genpath('/home/minjay/div_curl'))
 
-savefile = 'pred_err_NMG.mat';
+savefile = 'pred_err_NMG_no_est.mat';
 
 load('wind.mat')
 
@@ -60,7 +58,7 @@ for i = 1:B
     rec_idx_pred(i, :) = setdiff(1:p*n, rec_idx_est(i, :));
 end
 
-parfor rep = 1:B
+for rep = 1:B
     
     % get pred and est locations
     pred_loc = rec_pred_loc(rep, :);
@@ -68,17 +66,8 @@ parfor rep = 1:B
 
     idx_est = rec_idx_est(rep, :);
     idx_pred = rec_idx_pred(rep, :);
-
-    % compute the subsets
-    h0_cell_sub = h0_cell(est_loc, est_loc);
-    r_sub = r(est_loc, est_loc);
-    samples_sub = samples(:, idx_est);
-
-    % negative log-likelihood function
-    negloglik1 = @(beta_all) negloglik_NMG_Matern_all(beta_all, r_sub, samples_sub, h0_cell_sub);
-
-    % fit the model
-    [beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, [], false);
+    
+    beta_hat = beta_init;
 
     a1 = beta_hat(1);
     a2 = beta_hat(2);
@@ -147,6 +136,3 @@ parfor rep = 1:B
 end
 
 save(savefile, 'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v', 'LogS_u', 'LogS_v', 'CRPS_u', 'CRPS_v');
-
-% run on server
-delete(gcp)
