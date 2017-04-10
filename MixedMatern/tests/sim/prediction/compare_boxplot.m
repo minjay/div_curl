@@ -54,4 +54,4 @@ subplot(2, 4, 8)
 boxplot([CRPS_v_TMM CRPS_v CRPS_v_NMG], 'labels', models)
 title('CRPS, v')
 
-set(h, 'Position', [0, 0, 600, 300]);
+set(h, 'Position', [0, 0, 700, 350]);
