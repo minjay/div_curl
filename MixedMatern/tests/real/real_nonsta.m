@@ -83,17 +83,18 @@ lon = phi/pi*180;
 [lon_sorted, index] = sort(lon);
 
 subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.075 0.05], [0.05 0.02]);
+GREY = [0.6 0.6 0.6];
 
 % compare true and fitted variance at each location
 % plot against latitudes and longitudes 
 subplot(2, 2, 1)
-plot(lat, diag(cov_u_data), 'bo')
+plot(lat, diag(cov_u_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lat, diag(cov_u_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
-ph1 = plot(lat, diag(cov_u), 'r', 'LineWidth', 1.5);
-ph2 = plot(lat, diag(cov_u_BM), 'c-.', 'LineWidth', 1.5);
-ph3 = plot(lat, diag(cov_u_NMG), 'm--', 'LineWidth', 1.5);
+ph1 = plot(lat, diag(cov_u), 'b', 'LineWidth', 1.5);
+ph2 = plot(lat, diag(cov_u_BM), 'k-.', 'LineWidth', 1.5);
+ph3 = plot(lat, diag(cov_u_NMG), 'r--', 'LineWidth', 1.5);
 axis tight
 title('Variance of U Residual Field')
 ylim([0 1])
@@ -101,13 +102,13 @@ xlabel('Latitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 2)
-plot(lon, diag(cov_u_data), 'bo')
+plot(lon, diag(cov_u_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_u_data(index, index)), 0.2, 'loess');
 h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
-ph1 = plot(lon_sorted, diag(cov_u(index, index)), 'r', 'LineWidth', 1.5);
-ph2 = plot(lon_sorted, diag(cov_u_BM(index, index)), 'c-.', 'LineWidth', 1.5);
-ph3 = plot(lon_sorted, diag(cov_u_NMG(index, index)), 'm.');
+ph1 = plot(lon_sorted, diag(cov_u(index, index)), 'b', 'LineWidth', 1.5);
+ph2 = plot(lon_sorted, diag(cov_u_BM(index, index)), 'k-.', 'LineWidth', 1.5);
+ph3 = plot(lon_sorted, diag(cov_u_NMG(index, index)), 'r.');
 axis tight
 title('Variance of U Residual Field')
 ylim([0 1])
@@ -115,13 +116,13 @@ xlabel('Longitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 3)
-plot(lat, diag(cov_v_data), 'bo')
+plot(lat, diag(cov_v_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lat, diag(cov_v_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
-ph1 = plot(lat, diag(cov_v), 'r', 'LineWidth', 1.5);
-ph2 = plot(lat, diag(cov_v_BM), 'c-.', 'LineWidth', 1.5);
-ph3 = plot(lat, diag(cov_v_NMG), 'm--', 'LineWidth', 1.5);
+ph1 = plot(lat, diag(cov_v), 'b', 'LineWidth', 1.5);
+ph2 = plot(lat, diag(cov_v_BM), 'k-.', 'LineWidth', 1.5);
+ph3 = plot(lat, diag(cov_v_NMG), 'r--', 'LineWidth', 1.5);
 axis tight
 title('Variance of V Residual Field')
 ylim([0 1])
@@ -129,13 +130,13 @@ xlabel('Latitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 4)
-plot(lon, diag(cov_v_data), 'bo')
+plot(lon, diag(cov_v_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_v_data(index, index)), 0.2, 'loess');
 h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
-ph1 = plot(lon_sorted, diag(cov_v(index, index)), 'r', 'LineWidth', 1.5);
-ph2 = plot(lon_sorted, diag(cov_v_BM(index, index)), 'c-.', 'LineWidth', 1.5);
-ph3 = plot(lon_sorted, diag(cov_v_NMG(index, index)), 'm.');
+ph1 = plot(lon_sorted, diag(cov_v(index, index)), 'b', 'LineWidth', 1.5);
+ph2 = plot(lon_sorted, diag(cov_v_BM(index, index)), 'k-.', 'LineWidth', 1.5);
+ph3 = plot(lon_sorted, diag(cov_v_NMG(index, index)), 'r.');
 axis tight
 title('Variance of V Residual Field')
 ylim([0 1])
