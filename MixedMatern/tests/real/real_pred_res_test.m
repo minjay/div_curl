@@ -25,3 +25,4 @@ end
 diff_TMM_BM = res_TMM-res_BM;
 boxplot(diff_TMM_BM, 'label', {'MSPE_u', 'MSPE_v', 'MAE_u', 'MAE_v', 'LogS_u',...
     'LogS_v', 'CRPS_u', 'CRPS_v'})
+ylabel('Diff between TMM and PARS-BM')
