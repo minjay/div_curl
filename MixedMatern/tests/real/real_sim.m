@@ -129,13 +129,15 @@ h = figure;
 
 subplot = @(m,n,p) subtightplot (m, n, p, [0.125 0.075], [0.075 0.05], [0.05 0.01]);
 
+GREY = [0.6 0.6 0.6];
+
 subplot(2,2,1)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_u_data_upper);
 r_max_index = find(r_upper_sort<=X_MED(end), 1, 'last');
-plot(X_MED, Y_MED, 'bo')
-lh = boxplot_curve(r_upper, cov_u_upper, nb, 'r', 0.5);
-ph = plot(r_upper_sort(1:r_max_index), cov_u_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
-lh2 = boxplot_curve2(r_upper, cov_u_upper_NMG, nb, 'm', 0.5, width);
+plot(X_MED, Y_MED, 'o', 'Color', GREY, 'MarkerSize', 3)
+lh = boxplot_curve(r_upper, cov_u_upper, nb, 'b', 0.5);
+ph = plot(r_upper_sort(1:r_max_index), cov_u_upper_BM(r_upper_index(1:r_max_index)), 'k-.', 'LineWidth', 1.5);
+lh2 = boxplot_curve2(r_upper, cov_u_upper_NMG, nb, 'r', 0.5, width);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of U Residual Field')
@@ -143,10 +145,10 @@ legend([lh ph lh2], {'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,2)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_v_data_upper);
-plot(X_MED, Y_MED, 'bo');
-lh = boxplot_curve(r_upper, cov_v_upper, nb, 'r', 0.5);
-ph = plot(r_upper_sort(1:r_max_index), cov_v_upper_BM(r_upper_index(1:r_max_index)), 'c-.', 'LineWidth', 1.5);
-lh2 = boxplot_curve2(r_upper, cov_v_upper_NMG, nb, 'm', 0.5, width);
+plot(X_MED, Y_MED, 'o', 'Color', GREY, 'MarkerSize', 3)
+lh = boxplot_curve(r_upper, cov_v_upper, nb, 'b', 0.5);
+ph = plot(r_upper_sort(1:r_max_index), cov_v_upper_BM(r_upper_index(1:r_max_index)), 'k-.', 'LineWidth', 1.5);
+lh2 = boxplot_curve2(r_upper, cov_v_upper_NMG, nb, 'r', 0.5, width);
 axis tight
 xlabel('Great-circle Distance (km)')
 title('Covariance of V Residual Field')
@@ -163,22 +165,22 @@ corr_uv_BM = diag(1./sqrt(diag(cov_u_BM)))*cov_uv_BM*diag(1./sqrt(diag(cov_v_BM)
 corr_uv_NMG = diag(1./sqrt(diag(cov_u_NMG)))*cov_uv_NMG*diag(1./sqrt(diag(cov_v_NMG)));
 
 subplot(2,2,3)
-plot(lat, diag(corr_uv_data), 'bo')
+plot(lat, diag(corr_uv_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lat, diag(corr_uv_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
 axis([min(lat) max(lat) -1 1])
 hline = refline(0, 0);
-set(hline,'Color','r')
+set(hline,'Color','b')
 set(hline,'LineWidth', 1.5)
-ph = plot(lat, diag(corr_uv_BM), 'c-.', 'LineWidth', 1.5);
-ph2 = plot(lat, diag(corr_uv_NMG), 'm--', 'LineWidth', 1.5);
+ph = plot(lat, diag(corr_uv_BM), 'k-.', 'LineWidth', 1.5);
+ph2 = plot(lat, diag(corr_uv_NMG), 'r--', 'LineWidth', 1.5);
 xlabel('Latitude (degree)')
 title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline ph ph2], {'Empirical','TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,4)
-plot(lon, diag(corr_uv_data), 'bo')
+plot(lon, diag(corr_uv_data), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 [sorted_lon, index] = sort(lon);
 y = diag(corr_uv_data);
@@ -186,10 +188,10 @@ y_smooth = smooth(sorted_lon, y(index), 0.2, 'loess');
 h_emp = plot(sorted_lon, y_smooth, 'g', 'LineWidth', 1.5);
 axis([min(lon) max(lon) -1 1])
 hline = refline(0, 0);
-set(hline,'Color','r')
+set(hline,'Color','b')
 set(hline,'LineWidth', 1.5)
-ph = plot(sorted_lon, diag(corr_uv_BM(index, index)), 'c-.', 'LineWidth', 1.5);
-ph2 = plot(sorted_lon, diag(corr_uv_NMG(index, index)), 'm.');
+ph = plot(sorted_lon, diag(corr_uv_BM(index, index)), 'k-.', 'LineWidth', 1.5);
+ph2 = plot(sorted_lon, diag(corr_uv_NMG(index, index)), 'r.');
 xlabel('Longitude (degree)')
 title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline ph ph2], {'Empirical','TMM', 'PARS-BM', 'NBG'})
