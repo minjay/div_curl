@@ -21,28 +21,37 @@ plot(lat, diag(corr_uv_data_90), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lat, diag(corr_uv_data_90), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
+hline = refline(0, 0);
+set(hline,'Color','r')
+set(hline,'LineWidth', 1.5)
 axis([min(lat) max(lat) -1 1])
 xlabel('Latitude')
 title('Cross-correlation of U & V Residual Fields')
 legend(h_emp, 'Empirical (90% EOF)')
 
-subplot(2, 2, 2)
+subplot(2, 2, 3)
 plot(lon, diag(corr_uv_data_90), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 [sorted_lon, index] = sort(lon);
 y = diag(corr_uv_data_90);
 y_smooth = smooth(sorted_lon, y(index), 0.2, 'loess');
 h_emp = plot(sorted_lon, y_smooth, 'g', 'LineWidth', 1.5);
+hline = refline(0, 0);
+set(hline,'Color','r')
+set(hline,'LineWidth', 1.5)
 axis([min(lon) max(lon) -1 1])
 xlabel('Longitude')
 title('Cross-correlation of U & V Residual Fields')
 legend(h_emp, 'Empirical (90% EOF)')
 
-subplot(2, 2, 3)
+subplot(2, 2, 2)
 plot(lat, diag(corr_uv_data_95), 'o', 'Color', GREY, 'MarkerSize', 3)
 hold on
 y_smooth = smooth(lat, diag(corr_uv_data_95), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
+hline = refline(0, 0);
+set(hline,'Color','r')
+set(hline,'LineWidth', 1.5)
 axis([min(lat) max(lat) -1 1])
 xlabel('Latitude')
 title('Cross-correlation of U & V Residual Fields')
@@ -55,6 +64,9 @@ hold on
 y = diag(corr_uv_data_95);
 y_smooth = smooth(sorted_lon, y(index), 0.2, 'loess');
 h_emp = plot(sorted_lon, y_smooth, 'g', 'LineWidth', 1.5);
+hline = refline(0, 0);
+set(hline,'Color','r')
+set(hline,'LineWidth', 1.5)
 axis([min(lon) max(lon) -1 1])
 xlabel('Longitude')
 title('Cross-correlation of U & V Residual Fields')
