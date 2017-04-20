@@ -19,6 +19,6 @@ lb = [0 0 -1 1 1 1 0 0 0];
 ub = [Inf Inf 1 5 5 5 Inf Inf Inf];
 
 % fit the model
-[beta_hat, f_min] = Matern_fit_full(negloglik1, beta_init, lb, ub, @mycon_full, true);
+[beta_hat, f_min] = Matern_fit(negloglik1, beta_init, lb, ub, @mycon_full, true);
 
 delete(gcp)
