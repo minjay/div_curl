@@ -23,21 +23,22 @@ p = 2;
 rho12 = beta_all(3);
 nu1 = beta_all(4);
 nu2 = beta_all(5);
-nu = (nu1+nu2)/2;
+nu12 = beta_all(6);
+%a = beta_all(7);
 d = 3;
-ub = gamma(nu1+d/2)^0.5*gamma(nu2+d/2)^0.5*gamma(nu)/gamma(nu1)^0.5/...
-    gamma(nu2)^0.5/gamma(nu+d/2);
+ub = gamma(nu1+d/2)^0.5*gamma(nu2+d/2)^0.5*gamma(nu12)/gamma(nu1)^0.5/...
+    gamma(nu2)^0.5/gamma(nu12+d/2);
 if abs(rho12)>ub
     beta_all(3) = sign(rho12)*ub;
 end
 
-beta = beta_all(1:6);
+beta = beta_all(1:7);
 
 disp(['Current estimate of beta is ', mat2str(round(beta_all*1e6)/1e6)])
 [coef, bessel] = get_coef_bessel(beta, r);
-tau1 = beta_all(7);
-tau2 = beta_all(8);
-cov_mat = get_cov(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix,...
+tau1 = beta_all(8);
+tau2 = beta_all(9);
+cov_mat = get_cov(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix_full,...
     beta, coef, bessel)+diag(kron(ones(1, n), [tau1^2, tau2^2]));
     
 % negative log-likelihood function
