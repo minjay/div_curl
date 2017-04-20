@@ -35,7 +35,7 @@ end
 beta = beta_all(1:7);
 
 disp(['Current estimate of beta is ', mat2str(round(beta_all*1e6)/1e6)])
-[coef, bessel] = get_coef_bessel(beta, r);
+[coef, bessel] = get_coef_bessel_full(beta, r);
 tau1 = beta_all(8);
 tau2 = beta_all(9);
 cov_mat = get_cov(h_mat, r, P_cell, Q_cell, A_cell, @Matern_mix_full,...
