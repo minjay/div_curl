@@ -25,13 +25,13 @@ sigma2 = beta(2);
 rho12 = beta(3);
 nu1 = beta(4);
 nu2 = beta(5);
-a = beta(6);
-nu = (nu1+nu2)/2;
+nu12 = beta(6);
+a = beta(7);
 
 left = [sigma1*P_mat_s sigma2*Q_mat_s];
 right = [sigma1*P_mat_t sigma2*Q_mat_t]';
 
-tmp = rho12*K_fun(h_mat, r, nu, a, coef(3), bessel([3 6]));
+tmp = rho12*K_fun(h_mat, r, nu12, a, coef(3), bessel([3 6]));
 middle = [K_fun(h_mat, r, nu1, a, coef(1), bessel([1 4])) tmp; tmp K_fun(h_mat, r, nu2, a, coef(2), bessel([2 5]))];
 mat = -left*middle*right;
 
