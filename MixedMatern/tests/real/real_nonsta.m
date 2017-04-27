@@ -88,7 +88,7 @@ GREY = [0.6 0.6 0.6];
 % compare true and fitted variance at each location
 % plot against latitudes and longitudes 
 subplot(2, 2, 1)
-plot(lat, diag(cov_u_data), '.', 'Color', GREY, 'MarkerSize', 10)
+plot(lat, diag(cov_u_data), '.', 'Color', GREY, 'MarkerSize', 8)
 hold on
 y_smooth = smooth(lat, diag(cov_u_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
@@ -102,7 +102,7 @@ xlabel('Latitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 2)
-plot(lon, diag(cov_u_data), '.', 'Color', GREY, 'MarkerSize', 10)
+plot(lon, diag(cov_u_data), '.', 'Color', GREY, 'MarkerSize', 8)
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_u_data(index, index)), 0.2, 'loess');
 h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
@@ -116,7 +116,7 @@ xlabel('Longitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 3)
-plot(lat, diag(cov_v_data), '.', 'Color', GREY, 'MarkerSize', 10)
+plot(lat, diag(cov_v_data), '.', 'Color', GREY, 'MarkerSize', 8)
 hold on
 y_smooth = smooth(lat, diag(cov_v_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
@@ -130,7 +130,7 @@ xlabel('Latitude')
 legend([h_emp ph1 ph2 ph3], {'Empirical', 'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2, 2, 4)
-plot(lon, diag(cov_v_data), '.', 'Color', GREY, 'MarkerSize', 10)
+plot(lon, diag(cov_v_data), '.', 'Color', GREY, 'MarkerSize', 8)
 hold on
 y_smooth = smooth(lon_sorted, diag(cov_v_data(index, index)), 0.2, 'loess');
 h_emp = plot(lon_sorted, y_smooth, 'g', 'LineWidth', 1.5);
