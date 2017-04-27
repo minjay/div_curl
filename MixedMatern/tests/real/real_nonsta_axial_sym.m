@@ -101,7 +101,7 @@ i2 = 10;
     lat1, lat2] = extract_cov(i1, i2, cov_u_data, cov_u, cov_u_BM, cov_u_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 1)
-plot(phi_diff, cov_u_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_u_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 xlabel('\phi_s - \phi_t')
 hold on
 [ph1, ph2, ph3] = plot_three(phi_diff_sorted, cov_u_sub(index), cov_u_sub_BM(index), cov_u_sub_NMG(index));
@@ -114,7 +114,7 @@ legend([ph1 ph2 ph3], {'TMM', 'PARS-BM', 'NBG'}, 'Location', 'South')
     lat1, lat2] = extract_cov(i1, i2, cov_v_data, cov_v, cov_v_BM, cov_v_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 2)
-plot(phi_diff, cov_v_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_v_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 xlabel('\phi_s - \phi_t')
 hold on
 plot_three(phi_diff_sorted, cov_v_sub(index), cov_v_sub_BM(index), cov_v_sub_NMG(index));
@@ -129,7 +129,7 @@ i2 = 10;
     lat1, lat2] = extract_cov(i1, i2, cov_u_data, cov_u, cov_u_BM, cov_u_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 3)
-plot(phi_diff, cov_u_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_u_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 xlabel('\phi_s - \phi_t')
 hold on
 plot_three(phi_diff_sorted, cov_u_sub(index), cov_u_sub_BM(index), cov_u_sub_NMG(index));
@@ -141,7 +141,7 @@ title(['Cov of U on Lat ', num2str(lat1), '\circ,', num2str(lat2), '\circ'])
     lat1, lat2] = extract_cov(i1, i2, cov_v_data, cov_v, cov_v_BM, cov_v_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 4)
-plot(phi_diff, cov_v_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_v_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 xlabel('\phi_s - \phi_t')
 hold on
 plot_three(phi_diff_sorted, cov_v_sub(index), cov_v_sub_BM(index), cov_v_sub_NMG(index));
@@ -159,7 +159,7 @@ i2 = 10;
     lat1, lat2] = extract_cov(i1, i2, cov_uv_data, cov_uv, cov_uv_BM, cov_uv_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 5)
-plot(phi_diff, cov_uv_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_uv_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 plot_three(phi_diff_sorted, cov_uv_sub(index), cov_uv_sub_BM(index), cov_uv_sub_NMG(index));
 xlabel('\phi_s - \phi_t')
@@ -174,7 +174,7 @@ i2 = 8;
     lat1, lat2] = extract_cov(i1, i2, cov_uv_data, cov_uv, cov_uv_BM, cov_uv_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 6)
-plot(phi_diff, cov_uv_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_uv_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 plot_three(phi_diff_sorted, cov_uv_sub(index), cov_uv_sub_BM(index), cov_uv_sub_NMG(index));
 xlabel('\phi_s - \phi_t')
@@ -189,7 +189,7 @@ i2 = 10;
     lat1, lat2] = extract_cov(i1, i2, cov_uv_data, cov_uv, cov_uv_BM, cov_uv_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 7)
-plot(phi_diff, cov_uv_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_uv_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 plot_three(phi_diff_sorted, cov_uv_sub(index), cov_uv_sub_BM(index), cov_uv_sub_NMG(index));
 xlabel('\phi_s - \phi_t')
@@ -201,7 +201,7 @@ title(['Cross-cov of U,V on Lat ', num2str(lat1), '\circ,', num2str(lat2), '\cir
     lat1, lat2] = extract_cov(i1, i2, cov_vu_data, cov_vu, cov_vu_BM, cov_vu_NMG, lat, lon);
 [phi_diff_sorted, index] = sort(phi_diff);
 subplot(2, 4, 8)
-plot(phi_diff, cov_vu_data_sub, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(phi_diff, cov_vu_data_sub, '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 plot_three(phi_diff_sorted, cov_vu_sub(index), cov_vu_sub_BM(index), cov_vu_sub_NMG(index));
 xlabel('\phi_s - \phi_t')
