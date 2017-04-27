@@ -5,9 +5,9 @@ function lh = boxplot_curve(r_upper, cov_u_upper, nb, col, y_range)
 hold on
 for i = 1:nb
     if i==1
-        lh = line([X_MED(i), X_MED(i)], [Y_LOW(i), Y_HIGH(i)], 'Color', col, 'LineWidth', 1);
+        lh = line([X_MED(i), X_MED(i)], [Y_LOW(i), Y_HIGH(i)], 'Color', col, 'LineWidth', 0.75);
     else
-        line([X_MED(i), X_MED(i)], [Y_LOW(i), Y_HIGH(i)], 'Color', col, 'LineWidth', 1)
+        line([X_MED(i), X_MED(i)], [Y_LOW(i), Y_HIGH(i)], 'Color', col, 'LineWidth', 0.75)
     end
 end
 
