@@ -134,7 +134,7 @@ GREY = [0.6 0.6 0.6];
 subplot(2,2,1)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_u_data_upper);
 r_max_index = find(r_upper_sort<=X_MED(end), 1, 'last');
-plot(X_MED, Y_MED, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(X_MED, Y_MED, '.', 'Color', GREY, 'MarkerSize', 10)
 lh = boxplot_curve(r_upper, cov_u_upper, nb, 'b', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_u_upper_BM(r_upper_index(1:r_max_index)), 'k-.', 'LineWidth', 1.5);
 lh2 = boxplot_curve2(r_upper, cov_u_upper_NMG, nb, 'r', 0.5, width);
@@ -145,7 +145,7 @@ legend([lh ph lh2], {'TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,2)
 [X_MED,Y_MED,~,~] = binned_plot(r_upper, cov_v_data_upper);
-plot(X_MED, Y_MED, 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(X_MED, Y_MED, '.', 'Color', GREY, 'MarkerSize', 10)
 lh = boxplot_curve(r_upper, cov_v_upper, nb, 'b', 0.5);
 ph = plot(r_upper_sort(1:r_max_index), cov_v_upper_BM(r_upper_index(1:r_max_index)), 'k-.', 'LineWidth', 1.5);
 lh2 = boxplot_curve2(r_upper, cov_v_upper_NMG, nb, 'r', 0.5, width);
@@ -165,7 +165,7 @@ corr_uv_BM = diag(1./sqrt(diag(cov_u_BM)))*cov_uv_BM*diag(1./sqrt(diag(cov_v_BM)
 corr_uv_NMG = diag(1./sqrt(diag(cov_u_NMG)))*cov_uv_NMG*diag(1./sqrt(diag(cov_v_NMG)));
 
 subplot(2,2,3)
-plot(lat, diag(corr_uv_data), 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(lat, diag(corr_uv_data), '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 y_smooth = smooth(lat, diag(corr_uv_data), 0.2, 'loess');
 h_emp = plot(lat, y_smooth, 'g', 'LineWidth', 1.5);
@@ -180,7 +180,7 @@ title('Cross-correlation of U & V Residual Fields')
 legend([h_emp hline ph ph2], {'Empirical','TMM', 'PARS-BM', 'NBG'})
 
 subplot(2,2,4)
-plot(lon, diag(corr_uv_data), 'o', 'Color', GREY, 'MarkerSize', 3)
+plot(lon, diag(corr_uv_data), '.', 'Color', GREY, 'MarkerSize', 10)
 hold on
 [sorted_lon, index] = sort(lon);
 y = diag(corr_uv_data);
